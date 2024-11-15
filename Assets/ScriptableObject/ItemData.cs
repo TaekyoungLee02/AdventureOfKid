@@ -19,4 +19,5 @@ public class ItemData : ScriptableObject
     public string ItemDescription;
     public ItemType ItemType;
     public int Value;
+    public GameObject GameObjectPrefab;
 }
