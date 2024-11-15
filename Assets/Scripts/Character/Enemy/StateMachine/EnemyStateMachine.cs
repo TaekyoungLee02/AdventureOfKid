@@ -25,7 +25,7 @@ public class EnemyStateMachine : StateMachine
         ChasingState = new EnemyChasingState(this);
         AttackState = new EnemyAttackState(this);
 
-        //MovementSpeed = enemy.Data.GroundData.BaseSpeed;
-        //RotationDamping = enemy.Data.GroundData.BaseRotationDamping;
+        MovementSpeed = enemy.Data.GroundData.BaseSpeed;
+        RotationDamping = enemy.Data.GroundData.BaseRotationDamping;
     }
 }

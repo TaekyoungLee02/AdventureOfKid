@@ -10,29 +10,29 @@ public interface IState
 
 public abstract class StateMachine
 {
-    protected IState _currentState;
+    protected IState currentState;
 
-    public IState CurrentState { get { return _currentState; } }
+    public IState CurrentState { get { return currentState; } }
 
     public void ChangeState(IState state)
     {
-        _currentState?.Exit();
-        _currentState = state;
-        _currentState?.Enter();
+        currentState?.Exit();
+        currentState = state;
+        currentState?.Enter();
     }
 
     public void HandleInput()
     {
-        _currentState?.HandleInput();
+        currentState?.HandleInput();
     }
 
     public void Update()
     {
-        _currentState?.Update();
+        currentState?.Update();
     }
 
     public void PhysicsUpdate()
     {
-        _currentState?.PhysicsUpdate();
+        currentState?.PhysicsUpdate();
     }
 }

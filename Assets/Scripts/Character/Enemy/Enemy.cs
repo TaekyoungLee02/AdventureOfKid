@@ -6,20 +6,20 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
-    //[field: SerializeField] public EnemySO Data { get; private set; }
+    [field: SerializeField] public EnemySO Data { get; private set; }
 
     [field: Header("Animations")]
-    [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
+    [field: SerializeField] public EnemyAnimationData AnimationData { get; private set; }
 
     public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
     //public ForceReceiver ForceReceiver { get; private set; }
 
-    public EnemyCondition Condition { get; private set; }
+    //public EnemyCondition Condition { get; private set; }
 
     public NavMeshAgent NavMeshAgent { get; private set; }
 
-    private EnemyStateMachine _stateMachine;
+    private EnemyStateMachine stateMachine;
 
     public Action RemoveTarget;
 
@@ -31,27 +31,27 @@ public class Enemy : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         Controller = GetComponent<CharacterController>();
         //ForceReceiver = GetComponent<ForceReceiver>();
-        Condition = GetComponent<EnemyCondition>();
+        //Condition = GetComponent<EnemyCondition>();
 
         NavMeshAgent = GetComponent<NavMeshAgent>();
 
-        _stateMachine = new EnemyStateMachine(this);
+        stateMachine = new EnemyStateMachine(this);
     }
 
     void Start()
     {
-        _stateMachine.ChangeState(_stateMachine.IdleState);
+        stateMachine.ChangeState(stateMachine.IdleState);
         //RemoveTarget += CharacterManager.Instance.Player.RemoveTarget;
     }
 
     private void Update()
     {
-        _stateMachine.HandleInput();
-        _stateMachine.Update();
+        stateMachine.HandleInput();
+        stateMachine.Update();
     }
 
     private void FixedUpdate()
     {
-        _stateMachine.PhysicsUpdate();
+        stateMachine.PhysicsUpdate();
     }
 }

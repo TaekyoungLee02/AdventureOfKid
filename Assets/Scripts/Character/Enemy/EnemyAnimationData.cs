@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerAnimationData
+public class EnemyAnimationData
 {
     [SerializeField] private string _groundParameterName = "@Ground";
     [SerializeField] private string _idleParameterName = "Idle";
