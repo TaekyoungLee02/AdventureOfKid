@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ItemHealPotion : MonoBehaviour, IUseable
 {
-    public ItemData Data;
+    public int value;
 
     public void Use()
     {
-        Debug.Log($"플레이어의 체력이 {Data.Value} 회복됬습니다.");
+        Debug.Log($"플레이어의 체력이 {value} 회복됬습니다.");
+    }
+
+    public void Init(ItemData data)
+    {
+        value = data.value;
     }
 }

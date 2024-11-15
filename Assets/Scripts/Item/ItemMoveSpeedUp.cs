@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemMoveSpeedUp : MonoBehaviour, IUseable
 {
-    public ItemData Data;
+    public int value;
     float dealyTime = 1.5f;
 
     public void Use()
@@ -14,8 +14,13 @@ public class ItemMoveSpeedUp : MonoBehaviour, IUseable
 
     IEnumerator CoSpeedUp()
     {
-        Debug.Log($"플레이어의 스피드가 {Data.Value} 올랐습니다.");
+        Debug.Log($"플레이어의 스피드가 {value} 올랐습니다.");
         yield return new WaitForSeconds(dealyTime);
         Debug.Log($"플레어의 스피드가 정상화 되었습니다.");
+    }
+
+    public void Init(ItemData data)
+    {
+        value = data.value;
     }
 }

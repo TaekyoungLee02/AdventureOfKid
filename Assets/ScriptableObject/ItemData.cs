@@ -15,9 +15,9 @@ public enum ItemType
 public class ItemData : ScriptableObject
 {
     [Header("Info")]
-    public string ItemName;
-    public string ItemDescription;
-    public ItemType ItemType;
-    public int Value;
-    public GameObject GameObjectPrefab;
+    public string itemName;
+    public string itemDescription;
+    public ItemType itemType;
+    public int value;
+    public GameObject gameObjectPrefab;
 }
