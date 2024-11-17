@@ -6,33 +6,36 @@ using UnityEngine;
 [Serializable]
 public class EnemyAnimationData
 {
-    [SerializeField] private string _groundParameterName = "@Ground";
-    [SerializeField] private string _idleParameterName = "Idle";
-    [SerializeField] private string _chasingParameterName = "Chasing";
+    [SerializeField] private string groundParameterName = "@Ground";
+    [SerializeField] private string idleParameterName = "Idle";
+    [SerializeField] private string chasingParameterName = "Chasing";
 
-    [SerializeField] private string _attackParameterName = "@Attack";
-    [SerializeField] private string _comboAttackParameterName = "ComboAttack";
+    [SerializeField] private string attackParameterName = "@Attack";
+    //[SerializeField] private string _comboAttackParameterName = "ComboAttack";
+    [SerializeField] private string baseAttackParameterName = "BaseAttack";
 
-    [SerializeField] private string _baseAttackParameterName = "BaseAttack";
+    [SerializeField] private string damageParameterName = "Damage";
 
     public int GroundParameterHash { get; private set; }
     public int IdleParameterHash { get; private set; }
     public int ChasingParameterHash { get; private set; }
 
     public int AttackParameterHash { get; private set; }
-    public int ComboAttackParameterHash { get; private set; }
-
+    //public int ComboAttackParameterHash { get; private set; }
     public int BaseAttackParameterHash { get; private set; }
+
+    public int DamageParameterHash { get; private set; }
 
     public void Initialize()
     {
-        GroundParameterHash = Animator.StringToHash(_groundParameterName);
-        IdleParameterHash = Animator.StringToHash(_idleParameterName);
-        ChasingParameterHash = Animator.StringToHash(_chasingParameterName);
+        GroundParameterHash = Animator.StringToHash(groundParameterName);
+        IdleParameterHash = Animator.StringToHash(idleParameterName);
+        ChasingParameterHash = Animator.StringToHash(chasingParameterName);
 
-        AttackParameterHash = Animator.StringToHash(_attackParameterName);
-        ComboAttackParameterHash = Animator.StringToHash(_comboAttackParameterName);
+        AttackParameterHash = Animator.StringToHash(attackParameterName);
+        //ComboAttackParameterHash = Animator.StringToHash(_comboAttackParameterName);
+        BaseAttackParameterHash = Animator.StringToHash(baseAttackParameterName);
 
-        BaseAttackParameterHash = Animator.StringToHash(_baseAttackParameterName);
+        DamageParameterHash = Animator.StringToHash(damageParameterName);
     }
 }

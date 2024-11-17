@@ -32,6 +32,7 @@ public class EnemyBaseState : IState
     public virtual void Update()
     {
         //if(!stateMachine.Enemy.Condition._isDie)
+        // TODO :  공격 중 일때와, 살아있을 때만 쳐다봄
             Rotate();
     }
 

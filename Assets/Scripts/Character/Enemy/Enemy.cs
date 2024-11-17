@@ -54,4 +54,9 @@ public class Enemy : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
+
+    public void OnTestDamage()
+    {
+        stateMachine.ChangeState(stateMachine.DamageState);
+    }
 }
