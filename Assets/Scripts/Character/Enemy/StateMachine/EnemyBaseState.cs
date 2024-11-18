@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEditorInternal;
 
 public class EnemyBaseState : IState
 {
@@ -45,9 +46,14 @@ public class EnemyBaseState : IState
     {
         //if(!stateMachine.Enemy.Condition._isDie)
         // TODO :  공격 중 일때와, 살아있을 때만 쳐다봄
-        if(stateMachine.CurrentState == stateMachine.ChasingState
+        if (stateMachine.CurrentState == stateMachine.ChasingState
             || stateMachine.CurrentState == stateMachine.AttackState)
-            Rotate();
+        {
+            if (stateMachine.Enemy.NavMeshAgent.velocity.sqrMagnitude > 0.1f)
+                LookAtNavPath();
+            else
+                Rotate();
+        }
     }
 
     protected void StartAnimation(int animatorHash)
@@ -152,6 +158,13 @@ public class EnemyBaseState : IState
         Vector3 directionToPlayer = stateMachine.Target.transform.position - stateMachine.Enemy.transform.position;
         float angle = Vector3.Angle(stateMachine.Enemy.transform.forward, directionToPlayer);
         return angle < fieldOfView * 0.5f;
+    }
+
+    private void LookAtNavPath()
+    {
+        Transform playerTransform = stateMachine.Enemy.transform;
+        Quaternion targetRotation = Quaternion.LookRotation(stateMachine.Enemy.NavMeshAgent.velocity.normalized);
+        playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
     }
 
     protected void ComeBackPath()
