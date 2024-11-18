@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyBaseState
 {
+    private bool isWander;
     public EnemyIdleState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -14,6 +15,7 @@ public class EnemyIdleState : EnemyBaseState
         base.Enter();
         StartAnimation(stateMachine.Enemy.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Enemy.AnimationData.IdleParameterHash);
+        isWander = false;
     }
 
     public override void Exit()
@@ -27,10 +29,18 @@ public class EnemyIdleState : EnemyBaseState
     {
         base.Update();
 
-        if (IsInChasingRange())
+        if (IsInChasingRange() && IsPlayerInFieldOfView())
         {
             stateMachine.ChangeState(stateMachine.ChasingState);
             return;
+        }
+        else
+        {
+            if (!isWander)
+            {
+                WanderToNewLocation();
+                isWander = true;
+            }
         }
     }
 }

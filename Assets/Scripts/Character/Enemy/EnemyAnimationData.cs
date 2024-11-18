@@ -8,6 +8,7 @@ public class EnemyAnimationData
 {
     [SerializeField] private string groundParameterName = "@Ground";
     [SerializeField] private string idleParameterName = "Idle";
+    [SerializeField] private string wanderParameterName = "Wander";
     [SerializeField] private string chasingParameterName = "Chasing";
 
     [SerializeField] private string attackParameterName = "@Attack";
@@ -18,6 +19,7 @@ public class EnemyAnimationData
 
     public int GroundParameterHash { get; private set; }
     public int IdleParameterHash { get; private set; }
+    public int WanderParameterHash { get; private set; }
     public int ChasingParameterHash { get; private set; }
 
     public int AttackParameterHash { get; private set; }
@@ -30,6 +32,7 @@ public class EnemyAnimationData
     {
         GroundParameterHash = Animator.StringToHash(groundParameterName);
         IdleParameterHash = Animator.StringToHash(idleParameterName);
+        WanderParameterHash = Animator.StringToHash(wanderParameterName);
         ChasingParameterHash = Animator.StringToHash(chasingParameterName);
 
         AttackParameterHash = Animator.StringToHash(attackParameterName);

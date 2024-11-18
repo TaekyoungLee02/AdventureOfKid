@@ -24,7 +24,6 @@ public class EnemyDamageState : EnemyBaseState
     public override void Exit()
     {
         stateMachine.Enemy.NavMeshAgent.speed = beforeSpeed;
-        stateMachine.Enemy.NavMeshAgent.isStopped = false;
         base.Exit();
     }
 

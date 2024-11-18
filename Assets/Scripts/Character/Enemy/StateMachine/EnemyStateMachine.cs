@@ -13,6 +13,7 @@ public class EnemyStateMachine : StateMachine
 
     public GameObject Target { get; private set; }
     public EnemyIdleState IdleState { get; private set; }
+    public EnemyWanderState WanderState { get; private set; }
     public EnemyChasingState ChasingState { get; private set; }
     public EnemyAttackState AttackState { get; private set; }
     public EnemyDamageState DamageState { get; private set; }
@@ -23,6 +24,7 @@ public class EnemyStateMachine : StateMachine
         Target = GameObject.FindGameObjectWithTag("Player");
 
         IdleState = new EnemyIdleState(this);
+        WanderState = new EnemyWanderState(this);
         ChasingState = new EnemyChasingState(this);
         AttackState = new EnemyAttackState(this);
         DamageState = new EnemyDamageState(this);

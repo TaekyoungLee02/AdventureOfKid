@@ -41,6 +41,12 @@ public class EnemyChasingState : EnemyBaseState
         }
         else
         {
+            if (stateMachine.Enemy.IsOut)
+            {
+                stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Enemy.OriginPos);
+                return;
+            }
+
             if (stateMachine.Enemy.NavMeshAgent.CalculatePath(stateMachine.Target.transform.position, path))
             {
                 stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Target.transform.position);

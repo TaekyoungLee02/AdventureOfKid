@@ -23,6 +23,10 @@ public class Enemy : MonoBehaviour
 
     public Action RemoveTarget;
 
+    public bool IsOut { get; set; }
+
+    public Vector3 OriginPos { get; private set; }
+
     //[field: SerializeField] public Weapon Weapon { get; private set; }
 
     private void Awake()
@@ -34,6 +38,8 @@ public class Enemy : MonoBehaviour
         //Condition = GetComponent<EnemyCondition>();
 
         NavMeshAgent = GetComponent<NavMeshAgent>();
+
+        OriginPos = transform.position;
 
         stateMachine = new EnemyStateMachine(this);
     }

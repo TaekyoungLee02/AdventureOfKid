@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBaseState : IState
 {
     protected EnemyStateMachine stateMachine;
     protected readonly EnemyGroundData groundData;
+
+    // Temp
+    float minWanderDistance = 5f;
+    float maxWanderDistance = 10f;
+    float detectDistance    = 5f;
+    float minWanderWaitTime = 1f;
+    float maxWanderWaitTime = 5f;
+    float fieldOfView = 60f;
+
 
     public EnemyBaseState(EnemyStateMachine stateMachine)
     {
@@ -33,7 +45,7 @@ public class EnemyBaseState : IState
     {
         //if(!stateMachine.Enemy.Condition._isDie)
         // TODO :  공격 중 일때와, 살아있을 때만 쳐다봄
-            Rotate();
+        //    Rotate();
     }
 
     protected void StartAnimation(int animatorHash)
@@ -80,12 +92,10 @@ public class EnemyBaseState : IState
         AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
         AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
 
-        // 전환되고 있을 때 && 다음 애니메이션이 tag
         if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
         {
             return nextInfo.normalizedTime;
         }
-        // 전환되고 있지 않을 때 && 현재 애니메이션이 tag
         else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
         {
             return currentInfo.normalizedTime;
@@ -98,9 +108,47 @@ public class EnemyBaseState : IState
 
     protected bool IsInChasingRange()
     {
-        //if (_stateMachine.Target._isDie) return false;
+        if (stateMachine.Target == null) return false;
 
         float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Enemy.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Enemy.Data.PlayerChasingRange * stateMachine.Enemy.Data.PlayerChasingRange;
+    }
+
+    protected async void WanderToNewLocation()
+    {
+        float delayRate = Random.Range(minWanderWaitTime, maxWanderWaitTime) * 1000;
+        await Task.Delay((int)delayRate);
+
+        stateMachine.ChangeState(stateMachine.WanderState);
+        stateMachine.Enemy.NavMeshAgent.SetDestination(GetWanderLocation());
+    }
+
+    protected Vector3 GetWanderLocation()
+    {
+        NavMeshHit hit;
+
+        NavMesh.SamplePosition(stateMachine.Enemy.transform.position +
+            (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)),
+            out hit, maxWanderDistance, NavMesh.AllAreas);
+
+        int i = 0;
+
+        while (Vector3.Distance(stateMachine.Enemy.transform.position, hit.position) < detectDistance)
+        {
+            NavMesh.SamplePosition(stateMachine.Enemy.transform.position +
+            (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)),
+            out hit, maxWanderDistance, NavMesh.AllAreas);
+            i++;
+            if (i == 30) break;
+        }
+
+        return hit.position;
+    }
+
+    protected bool IsPlayerInFieldOfView()
+    {
+        Vector3 directionToPlayer = stateMachine.Target.transform.position - stateMachine.Enemy.transform.position;
+        float angle = Vector3.Angle(stateMachine.Enemy.transform.forward, directionToPlayer);
+        return angle < fieldOfView * 0.5f;
     }
 }
