@@ -24,10 +24,11 @@ public class Enemy : MonoBehaviour
     public Action RemoveTarget;
 
     public bool IsOut { get; set; }
+    [field: SerializeField] public bool CanThrow { get; private set; }
 
     public Vector3 OriginPos { get; private set; }
 
-    //[field: SerializeField] public Weapon Weapon { get; private set; }
+    [field: SerializeField] public Weapon Weapon { get; private set; }
 
     private void Awake()
     {

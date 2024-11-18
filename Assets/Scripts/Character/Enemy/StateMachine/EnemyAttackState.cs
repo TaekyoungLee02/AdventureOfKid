@@ -48,13 +48,13 @@ public class EnemyAttackState : EnemyBaseState
             if (!_alreadyApliedDealing && normalizedTime >= stateMachine.Enemy.Data.Dealing_Start_TransitionTime)
             {
                 //stateMachine.Enemy.Weapon.SetAttack(stateMachine.Enemy.Data.damage, stateMachine.Enemy.Data.Force);
-                //stateMachine.Enemy.Weapon.gameObject.SetActive(true);
+                stateMachine.Enemy.Weapon.gameObject.SetActive(true);
                 _alreadyApliedDealing = true;
             }
 
             if (_alreadyApliedDealing && normalizedTime >= stateMachine.Enemy.Data.Dealing_End_TransitionTime)
             {
-                //stateMachine.Enemy.Weapon.gameObject.SetActive(false);
+                stateMachine.Enemy.Weapon.gameObject.SetActive(false);
             }
         }
         else

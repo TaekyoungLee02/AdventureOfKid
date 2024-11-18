@@ -16,7 +16,7 @@ public class EnemyBaseState : IState
     float detectDistance    = 5f;
     float minWanderWaitTime = 1f;
     float maxWanderWaitTime = 5f;
-    float fieldOfView = 60f;
+    float fieldOfView = 120f;
 
 
     public EnemyBaseState(EnemyStateMachine stateMachine)
@@ -45,7 +45,9 @@ public class EnemyBaseState : IState
     {
         //if(!stateMachine.Enemy.Condition._isDie)
         // TODO :  공격 중 일때와, 살아있을 때만 쳐다봄
-        //    Rotate();
+        if(stateMachine.CurrentState == stateMachine.ChasingState
+            || stateMachine.CurrentState == stateMachine.AttackState)
+            Rotate();
     }
 
     protected void StartAnimation(int animatorHash)
@@ -150,5 +152,20 @@ public class EnemyBaseState : IState
         Vector3 directionToPlayer = stateMachine.Target.transform.position - stateMachine.Enemy.transform.position;
         float angle = Vector3.Angle(stateMachine.Enemy.transform.forward, directionToPlayer);
         return angle < fieldOfView * 0.5f;
+    }
+
+    protected void ComeBackPath()
+    {
+        NavMeshPath newPath = new NavMeshPath();
+        if (stateMachine.Enemy.NavMeshAgent.CalculatePath(stateMachine.Enemy.OriginPos, newPath))
+        {
+            stateMachine.Enemy.NavMeshAgent.SetPath(newPath);
+        }
+        //stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Enemy.OriginPos);
+
+        if (stateMachine.Enemy.NavMeshAgent.remainingDistance < 0.1f)
+        {
+            stateMachine.Enemy.IsOut = false;
+        }
     }
 }

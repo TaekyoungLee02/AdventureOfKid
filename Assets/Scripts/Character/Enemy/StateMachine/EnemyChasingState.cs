@@ -43,7 +43,8 @@ public class EnemyChasingState : EnemyBaseState
         {
             if (stateMachine.Enemy.IsOut)
             {
-                stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Enemy.OriginPos);
+                ComeBackPath();
+
                 return;
             }
 
