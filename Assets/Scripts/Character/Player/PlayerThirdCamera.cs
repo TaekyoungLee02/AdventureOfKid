@@ -12,6 +12,8 @@ public class PlayerThirdCamera : MonoBehaviour
     [SerializeField] private float cameraOffsetY;
     [SerializeField] private float cameraOffsetZ;
 
+    [SerializeField] LayerMask layerMask;
+
     /// <summary>The Vertical axis.  Value is -90..90. Controls the vertical orientation</summary>
     [Tooltip("The Vertical axis.  Value is -90..90. Controls the vertical orientation")]
     [AxisStateProperty]
@@ -72,7 +74,7 @@ public class PlayerThirdCamera : MonoBehaviour
         var cameraPos = LookAt.position + transform.TransformDirection(new Vector3(0, cameraOffsetY, cameraOffsetZ));
 
         Ray cameraRay = new(LookAt.position, cameraPos);
-        if (Physics.Raycast(cameraRay, out var hit, Vector3.Distance(LookAt.position, cameraPos)))
+        if (Physics.Raycast(cameraRay, out var hit, Vector3.Distance(LookAt.position, cameraPos), layerMask))
         {
             cameraPos = hit.point;
         }
