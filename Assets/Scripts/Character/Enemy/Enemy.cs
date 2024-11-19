@@ -43,6 +43,9 @@ public class Enemy : MonoBehaviour
         OriginPos = transform.position;
 
         stateMachine = new EnemyStateMachine(this);
+
+        // Temp
+        SoundManager.Instance.Play("bgm", Sound.Bgm, 0.5f);
     }
 
     void Start()
@@ -65,5 +68,6 @@ public class Enemy : MonoBehaviour
     public void OnTestDamage()
     {
         stateMachine.ChangeState(stateMachine.DamageState);
+        SoundManager.Instance.Play("coin", Sound.Sfx, 0.2f);
     }
 }
