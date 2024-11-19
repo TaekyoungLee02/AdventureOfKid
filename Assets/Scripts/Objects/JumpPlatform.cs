@@ -11,7 +11,7 @@ public class JumpPlatform : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            rb.AddForce(transform.up * JumpForce, ForceMode.Impulse);
         }
     }
 }
