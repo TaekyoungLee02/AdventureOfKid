@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyChasingState : EnemyBaseState
 {
     NavMeshPath path;
+    Coroutine curCoroutine;
+    WaitForSeconds corutineDelay = new WaitForSeconds(0.1f);
+    bool canMovePath;
 
     public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -17,6 +21,7 @@ public class EnemyChasingState : EnemyBaseState
         stateMachine.MovementSpeedModifier = groundData.ChasingSpeedModifier;
         stateMachine.Enemy.NavMeshAgent.speed = stateMachine.MovementSpeed + stateMachine.MovementSpeedModifier;
         stateMachine.Enemy.NavMeshAgent.isStopped = false;
+        canMovePath = true;
         base.Enter();
         StartAnimation(stateMachine.Enemy.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Enemy.AnimationData.ChasingParameterHash);
@@ -48,11 +53,12 @@ public class EnemyChasingState : EnemyBaseState
                 return;
             }
 
-            if (stateMachine.Enemy.NavMeshAgent.CalculatePath(stateMachine.Target.transform.position, path))
+            if (curCoroutine == null)
             {
-                stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Target.transform.position);
+                curCoroutine = CoroutineHelper.Instance.RunCoroutine(CoPathFind());
             }
-            else
+
+            if (!canMovePath)
             {
                 stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Enemy.transform.position);
                 stateMachine.ChangeState(stateMachine.IdleState);
@@ -66,10 +72,26 @@ public class EnemyChasingState : EnemyBaseState
             }
         }
     }
-
+    
     protected bool IsInAttackRange()
     {
         float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Enemy.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Enemy.Data.AttackRange * stateMachine.Enemy.Data.AttackRange;
+    }
+
+    IEnumerator CoPathFind()
+    {
+        if (stateMachine.Enemy.NavMeshAgent.CalculatePath(stateMachine.Target.transform.position, path))
+        {
+            stateMachine.Enemy.NavMeshAgent.SetDestination(stateMachine.Target.transform.position);
+        }
+        else
+        {
+            canMovePath = false;
+        }
+
+        yield return corutineDelay;
+
+        curCoroutine = null;
     }
 }
