@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemMoveSpeedUp : MonoBehaviour, IUseable
+public class ItemMoveSpeedUp : Item, IUseable
 {
     private int value;
     float dealyTime = 1.5f;
