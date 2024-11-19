@@ -29,8 +29,7 @@ public class EffectManager : MonoBehaviour
     {
         if (instance == null)
         {
-            GameObject gameObj = new GameObject();
-            gameObj.name = typeof(EffectManager).Name;
+            GameObject gameObj = new GameObject(nameof(EffectManager));
             instance = gameObj.AddComponent<EffectManager>();
             DontDestroyOnLoad(gameObj);
         }
