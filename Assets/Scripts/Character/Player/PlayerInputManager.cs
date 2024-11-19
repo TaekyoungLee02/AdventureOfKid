@@ -10,17 +10,21 @@ public class PlayerInputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private VirtualJoystick joystick;
+    private JumpControlUI jumpUI;
     private Vector2 playerAxis;
     private Vector2 playerMove;
+    private bool isJumping;
 
     public PlayerInput PlayerInput { get { return playerInput; } }
     public Vector2 PlayerAxis { get { return playerAxis; } }
     public Vector2 PlayerMove { get { return playerMove; } }
+    public bool IsJumping { get { return isJumping; } }
 
     private void Awake()
     {
         playerInput = new PlayerInput();
         joystick = FindObjectOfType<VirtualJoystick>();
+        jumpUI = FindObjectOfType<JumpControlUI>();
         InitPlayerInput();
     }
 
@@ -36,7 +40,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void InitPlayerInput()
     {
-        #if (UNITY_ANDROID || UNITY_IOS)
+#if (UNITY_ANDROID || UNITY_IOS)
 
             playerInput.Player.PrimaryTouch.performed += Look;
             playerInput.Player.PrimaryTouch.canceled += Look;
@@ -44,8 +48,9 @@ public class PlayerInputManager : MonoBehaviour
             playerInput.Player.SecondaryTouch.canceled += Look;
 
             joystick.OnTouchscreenMove += TouchScreenMove;
+            jumpUI.OnTouchscreenJump += TouchScreenJump;
 
-        #else
+#else
 
             playerInput.Player.Look.performed += Look;
             playerInput.Player.Look.canceled += Look;
@@ -53,9 +58,11 @@ public class PlayerInputManager : MonoBehaviour
             playerInput.Player.Move.performed += Move;
             playerInput.Player.Move.canceled += Move;
 
-        #endif
-    }
+            playerInput.Player.Jump.started += Jump;
+            playerInput.Player.Jump.canceled += Jump;
 
+#endif
+    }
 
     private void Look(InputAction.CallbackContext context)
     {
@@ -90,13 +97,17 @@ public class PlayerInputManager : MonoBehaviour
 
         #endif
     }
+    
 
 #if (UNITY_ANDROID || UNITY_IOS)
     private void TouchScreenMove(Vector2 movePosition)
     {
         playerMove = movePosition;
+    }
 
-        Debug.Log(movePosition);
+    private void TouchScreenJump(bool isPushed)
+    {
+        isJumping = isPushed;
     }
 
 #else
@@ -104,6 +115,18 @@ public class PlayerInputManager : MonoBehaviour
     private void Move(InputAction.CallbackContext context)
     {
         playerMove = context.ReadValue<Vector2>();
+    }
+
+    private void Jump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
     }
 
 #endif

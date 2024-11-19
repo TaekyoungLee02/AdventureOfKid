@@ -7,10 +7,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float jumpPower;
+    private bool isJumping;
 
     private Transform playerCamera;
     private CharacterController playerCC;
     private PlayerController playerController;
+
+    private Vector3 moveDirection;
 
     private void Awake()
     {
@@ -23,12 +28,14 @@ public class PlayerMovement : MonoBehaviour
     {
         playerController.OnLook += Look;
         playerController.OnMove += Move;
+        playerController.OnJump += Jump;
     }
 
     private void OnDisable()
     {
         playerController.OnLook -= Look;
         playerController.OnMove -= Move;
+        playerController.OnJump -= Jump;
     }
 
     private void Look()
@@ -39,8 +46,26 @@ public class PlayerMovement : MonoBehaviour
         transform.forward = lookDirection;
     }
 
-    private void Move(Vector3 moveDirection)
+    private void Move(Vector2 moveDirection)
     {
-        playerCC.Move(speed * Time.deltaTime * transform.TransformDirection(moveDirection));
+        this.moveDirection = new(moveDirection.x, this.moveDirection.y, moveDirection.y);
+
+        if (isJumping)
+        {
+            this.moveDirection.y = jumpPower;
+            isJumping = false;
+        }
+
+        this.moveDirection.y += (Physics.gravity.y * Time.deltaTime);
+
+        playerCC.Move(speed * Time.deltaTime * transform.TransformDirection(this.moveDirection));
+    }
+
+    private void Jump()
+    {
+        if (playerCC.isGrounded)
+        {
+            isJumping = true;
+        }
     }
 }

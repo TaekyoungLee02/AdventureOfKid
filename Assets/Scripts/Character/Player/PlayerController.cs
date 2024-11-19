@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerInputManager inputManager;
 
-    public event Action<Vector3> OnMove;
+    public event Action<Vector2> OnMove;
     public event Action OnLook;
+    public event Action OnJump;
 
     private void Awake()
     {
@@ -23,7 +24,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        OnMove?.Invoke(new(inputManager.PlayerMove.x, 0, inputManager.PlayerMove.y));
+        OnMove?.Invoke(inputManager.PlayerMove);
+
+        if (inputManager.IsJumping)
+        {
+            OnJump?.Invoke();
+        }
     }
 
     private void LateUpdate()
