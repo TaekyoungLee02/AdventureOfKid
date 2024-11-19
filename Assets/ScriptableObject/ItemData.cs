@@ -7,7 +7,8 @@ using UnityEngine;
 public enum ItemType
 {
     MoveSpeedUp,
-    Heal
+    Heal,
+    Armor
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "NewItem")]

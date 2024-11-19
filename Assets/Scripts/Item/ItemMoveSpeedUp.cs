@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemMoveSpeedUp : MonoBehaviour, IUseable
 {
-    public int value;
+    private int value;
     float dealyTime = 1.5f;
 
     public void Use()

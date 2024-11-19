@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92e9bc5a0561265479ad06ea861115bb, type: 3}
-  m_Name: Item_SpeedUp
+  m_Name: Item_Armor
   m_EditorClassIdentifier: 
-  itemName: "\uC2A4\uD53C\uB4DC\uC5C5 \uD3EC\uC158"
-  itemDescription: "\uD50C\uB808\uC774\uC5B4\uC758 \uC2A4\uD53C\uB4DC\uB97C \uC77C\uC815\uC2DC\uAC04
-    \uC62C\uB824\uC90D\uB2C8\uB2E4."
-  itemType: 0
-  value: 5
-  gameObjectPrefab: {fileID: 9060681244837212251, guid: 94913fcd1e314724face5931ecd8bfa0, type: 3}
+  itemName: "\uC544\uBA38"
+  itemDescription: "\uD50C\uB808\uC774\uC5B4\uC758 \uCCB4\uB825\uC744 \uC9C0\uCF1C\uC900\uB2E4."
+  itemType: 2
+  value: 0
+  gameObjectPrefab: {fileID: 1885308567703381741, guid: 8db95c337c8549b4f9fdd2a4503022fa, type: 3}

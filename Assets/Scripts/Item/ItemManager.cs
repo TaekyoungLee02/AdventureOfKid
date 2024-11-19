@@ -25,6 +25,9 @@ public class ItemManager : MonoBehaviour
                 var speedUp = go.AddComponent<ItemMoveSpeedUp>();
                 speedUp.Init(itemData[id]);
                 break;
+            case ItemType.Armor:
+                var armor = go.AddComponent<ItemArmor>();
+                break;
         }
             
         return go;
