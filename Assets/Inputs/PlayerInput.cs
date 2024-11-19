@@ -62,6 +62,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a0fbea6-510b-4519-9fae-e1ee5ffde710"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""SecondaryTouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ab5b06a-5945-4fd8-8f33-65606b441b1a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -236,6 +256,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_PrimaryTouch = m_Player.FindAction("PrimaryTouch", throwIfNotFound: true);
         m_Player_SecondaryTouch = m_Player.FindAction("SecondaryTouch", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -301,6 +322,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_PrimaryTouch;
     private readonly InputAction m_Player_SecondaryTouch;
+    private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -309,6 +331,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @PrimaryTouch => m_Wrapper.m_Player_PrimaryTouch;
         public InputAction @SecondaryTouch => m_Wrapper.m_Player_SecondaryTouch;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -330,6 +353,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SecondaryTouch.started += instance.OnSecondaryTouch;
             @SecondaryTouch.performed += instance.OnSecondaryTouch;
             @SecondaryTouch.canceled += instance.OnSecondaryTouch;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -346,6 +372,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SecondaryTouch.started -= instance.OnSecondaryTouch;
             @SecondaryTouch.performed -= instance.OnSecondaryTouch;
             @SecondaryTouch.canceled -= instance.OnSecondaryTouch;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -387,5 +416,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPrimaryTouch(InputAction.CallbackContext context);
         void OnSecondaryTouch(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
