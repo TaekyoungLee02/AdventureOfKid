@@ -68,6 +68,9 @@ public class Enemy : MonoBehaviour
     public void OnTestDamage()
     {
         stateMachine.ChangeState(stateMachine.DamageState);
-        SoundManager.Instance.Play("coin", Sound.Sfx, 0.2f);
+
+        // Temp
+        EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
+        EffectManager.Instance.SettingColor(0f, 1f, 0f);
     }
 }
