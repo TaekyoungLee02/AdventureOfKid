@@ -15,17 +15,12 @@ public class DataBase<T> where T : DataTypeBase
 
         for (int i = 0; i < datas.Count; i++)
         {
-            _datas.Add(i, datas[i]);
+            _datas.Add(datas[i].id, datas[i]);
         }
-    }
-
-    public void Print()
-    {
-        
     }
 
     public T GetData(int id)
     {
-        return null;
+        return _datas[id];
     }
 }

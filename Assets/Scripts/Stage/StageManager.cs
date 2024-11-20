@@ -15,7 +15,7 @@ public class StageManager : MonoBehaviour
 
         for (int i = 0; i < currentStructure.Count; i++)
         {
-
+            
         }
     }
 }

@@ -41,7 +41,7 @@ public class UIInventory : MonoBehaviour
         //_dropPosition = CharacterManager.Instance.Player._dropPosition;
 
         //_controller.Inventory += Toggle;
-        CharacterManager.Instance.Player.AddItem += AddItem;
+        //CharacterManager.Instance.Player.AddItem += AddItem;
 
         inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
@@ -237,7 +237,7 @@ public class UIInventory : MonoBehaviour
 
         slots[selectedItemIdx].equipped = true;
         curEquipIdx = selectedItemIdx;
-        CharacterManager.Instance.Player.Equipment.EquipNew(selectedItem);
+        //CharacterManager.Instance.Player.Equipment.EquipNew(selectedItem);
 
         var hp = Resources.Load<GameObject>("Prefabs/Hp");
         Instantiate(hp, hpGroup.transform);
@@ -255,7 +255,7 @@ public class UIInventory : MonoBehaviour
     private void UnEquip(int index)
     {
         slots[index].equipped = false;
-        CharacterManager.Instance.Player.Equipment.UnEquip();
+        //CharacterManager.Instance.Player.Equipment.UnEquip();
 
         Destroy(hpGroup.transform.GetChild(0).gameObject);
 
@@ -271,13 +271,13 @@ public class UIInventory : MonoBehaviour
     {
         if (tempItem == null) return;
 
-        CharacterManager.Instance.Player.AddItem?.Invoke(tempItem);
+        //CharacterManager.Instance.Player.AddItem?.Invoke(tempItem);
     }
 
     public void TempAddItem2()
     {
         if (tempItem == null) return;
 
-        CharacterManager.Instance.Player.AddItem?.Invoke(tempItem2);
+        //CharacterManager.Instance.Player.AddItem?.Invoke(tempItem2);
     }
 }

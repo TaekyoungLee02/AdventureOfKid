@@ -8,6 +8,11 @@ public class DataManager : SingletonBase<DataManager>
 {
     private DataBase<StageData> _stageData = new();
     private DataBase<ItemDataBase> _itemData = new();
+    private DataBase<StructureData> _structureData = new();
+
+    public DataBase<StageData> StageData { get { return _stageData; } }
+    public DataBase<ItemDataBase> ItemData { get { return _itemData; } }
+    public DataBase<StructureData> StructureData { get { return _structureData; } }
 
     public enum DataType
     {
@@ -27,8 +32,6 @@ public class DataManager : SingletonBase<DataManager>
         //_stageData = LoadData<StageData>(DataType.StageData);
 
         _itemData = LoadData<ItemDataBase>(DataType.ItemData);
-
-        _itemData.Print();
     }
 
     public void SaveStageData()
