@@ -67,7 +67,7 @@ public class ButtonObject : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
-        transform.position = targetPosition;
+        //transform.position = targetPosition;
     }
 
     private void ActivateConnectedScript()

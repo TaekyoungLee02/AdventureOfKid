@@ -1,27 +1,49 @@
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class ButtonTrigger : MonoBehaviour
 {
     public Transform buttonTransform;
-    public GameObject targetObject;
+    public List<GameObject> targetObjects;
 
-    ITriggerable targetScripts;
-
-
+    List<ITriggerable> targetScripts;
 
     private void Start()
     {
-        targetScripts = targetObject.GetComponent<ITriggerable>();
+        targetScripts = new List<ITriggerable>();
+
+        foreach (GameObject obj in targetObjects)
+        {
+            ITriggerable script = obj.GetComponent<ITriggerable>();
+            if (script != null)
+            {
+                targetScripts.Add(script);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Button"))
         {
-            targetScripts.ExecuteFunction();
+            foreach (ITriggerable script in targetScripts)
+            {
+                script.ExecuteFunction();
+            }
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Button"))
+        {
+            foreach (ITriggerable script in targetScripts)
+            {
+                script.RevokeFunction();
+            }
+        }
+    }
 
 }
 

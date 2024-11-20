@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public Item item;
     public List<ItemData> itemData;
-
-    void Start()
-    {
-        
-    }
+    public GameObject randomItemBox;
 
     public GameObject GetItem(int id)
     {
         GameObject go = Instantiate(itemData[id].gameObjectPrefab);
+        go.transform.position = randomItemBox.transform.position + new Vector3(0, 0.5f, 0);
+        item.Rotation(go);
 
-        switch(itemData[id].itemType)
+        switch (itemData[id].itemType)
         {
             case ItemType.Heal:
                 var poiton = go.AddComponent<ItemHealPotion>();
@@ -31,5 +31,11 @@ public class ItemManager : MonoBehaviour
         }
             
         return go;
+    }
+
+    public void ItemSpawn()
+    {
+        int rnd = Random.Range(0, itemData.Count);
+        GetItem(rnd);
     }
 }
