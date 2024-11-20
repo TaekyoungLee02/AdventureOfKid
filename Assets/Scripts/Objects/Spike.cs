@@ -5,17 +5,17 @@ using UnityEngine;
 public class Spike : MonoBehaviour
 {
     public float DamageAmount = 10f; // 피해량 설정
-    public float DamageAngle = 45f;  // 피해를 줄 각도 범위
+    public float DamageAngle = 90f;  // 피해를 줄 각도 범위
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 otherPosition = other.transform.position;
+        Vector3 otherPosition = other.transform.position; //충돌한 오브젝트의 위치
 
-        Vector3 directionToOther = (otherPosition - transform.position).normalized;
+        Vector3 directionToOther = (otherPosition - transform.position).normalized; //충돌한 오브젝트의 방향
 
-        Vector3 spikeForward = transform.forward;
+        Vector3 spikeForward = transform.forward; // 가시의 방향
 
-        float angle = Vector3.Angle(spikeForward, directionToOther);
+        float angle = Vector3.Angle(spikeForward, directionToOther); 
 
         if (angle < DamageAngle)
         {
