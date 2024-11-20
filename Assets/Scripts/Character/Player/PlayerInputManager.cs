@@ -25,20 +25,21 @@ public class PlayerInputManager : MonoBehaviour
         playerInput = new PlayerInput();
         joystick = FindObjectOfType<VirtualJoystick>();
         jumpUI = FindObjectOfType<JumpControlUI>();
-        InitPlayerInput();
     }
 
     private void OnEnable()
     {
         playerInput.Enable();
+        InitPlayerInputEvent();
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
+        DeletePlayerInputEvent();
     }
 
-    private void InitPlayerInput()
+    private void InitPlayerInputEvent()
     {
 #if (UNITY_ANDROID || UNITY_IOS)
 
@@ -60,6 +61,32 @@ public class PlayerInputManager : MonoBehaviour
 
             playerInput.Player.Jump.started += Jump;
             playerInput.Player.Jump.canceled += Jump;
+
+#endif
+    }
+
+    private void DeletePlayerInputEvent()
+    {
+#if (UNITY_ANDROID || UNITY_IOS)
+
+            playerInput.Player.PrimaryTouch.performed -= Look;
+            playerInput.Player.PrimaryTouch.canceled -= Look;
+            playerInput.Player.SecondaryTouch.performed -= Look;
+            playerInput.Player.SecondaryTouch.canceled -= Look;
+
+            joystick.OnTouchscreenMove -= TouchScreenMove;
+            jumpUI.OnTouchscreenJump -= TouchScreenJump;
+
+#else
+
+        playerInput.Player.Look.performed -= Look;
+        playerInput.Player.Look.canceled -= Look;
+
+        playerInput.Player.Move.performed -= Move;
+        playerInput.Player.Move.canceled -= Move;
+
+        playerInput.Player.Jump.started -= Jump;
+        playerInput.Player.Jump.canceled -= Jump;
 
 #endif
     }
