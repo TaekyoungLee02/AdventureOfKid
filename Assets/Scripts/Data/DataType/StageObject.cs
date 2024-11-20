@@ -21,4 +21,9 @@ public struct VectorForSerialize
         y = vector.y;
         z = vector.z;
     }
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(x, y, z);
+    }
 }

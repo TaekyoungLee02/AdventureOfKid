@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using Newtonsoft.Json;
+using DG.Tweening.Plugins.Core.PathCore;
 
 public class DataManager : SingletonBase<DataManager>
 {
@@ -17,80 +18,54 @@ public class DataManager : SingletonBase<DataManager>
     public enum DataType
     {
         StageData,
-        ItemData
+        ItemData,
+        StructureData,
     }
 
     private new void Awake()
     {
         base.Awake();
+
+        _itemData = LoadData<ItemDataBase>(DataType.ItemData);
+        _stageData = LoadData<StageData>(DataType.StageData);
+        _structureData = LoadData<StructureData>(DataType.StructureData);
     }
 
     private void Start()
     {
-        SaveStageData();
+        //SaveStageData();
 
         //_stageData = LoadData<StageData>(DataType.StageData);
 
-        _itemData = LoadData<ItemDataBase>(DataType.ItemData);
+
     }
 
     public void SaveStageData()
     {
-        var objects = FindObjectsOfType<SceneObject>();
+        var objects = FindObjectsOfType<ObjectSerializer>();
 
-        List<ItemDataBase> stageData = new();
+        List<StageData> stageData = new();
 
-        ItemDataBase data = new();
+        StageData data = new();
 
-        data.values.Add(0);
-        data.values.Add(1);
+        data.id = 1;
+        data.name = "test";
 
-        //StageData data = new();
+        for (int i = 0; i < objects.Length; i++)
+        {
+            StageObject obj = objects[i].Serialize();
 
-        //data.id = 1;
-        //data.name = "test";
+            data.structures.Add(obj);
+        }
 
-        //for (int i = 0; i < objects.Length; i++)
-        //{
-        //    StageObject obj = new();
-        //    obj.position = new(objects[i].transform.position);
-        //    obj.rotation = new(objects[i].transform.rotation.eulerAngles);
-        //    obj.scale = new(objects[i].transform.localScale);
-
-        //    data.structures.Add(obj);
-        //}
         stageData.Add(data);
 
         string json = JsonConvert.SerializeObject(stageData);
 
         print(json);
 
-        File.WriteAllText(Application.dataPath + "/structure.json", json);
+        File.WriteAllText(Application.dataPath + Paths.JsonPathStageData, json);
 
-
-
-
-
-
-
-
-
-
-        //string path;
-        //DataBase<T> dataBase = new();
-
-
-        //if (!File.Exists(path)) return;
-
-        //StringBuilder sb = new();
-        //sb.Append(Application.dataPath);
-        //sb.Append(path);
-        //sb.Append(".json");
-
-        //string dataText = File.ReadAllText(sb.ToString());
-        //var data = JsonUtility.FromJson<List<T>>(dataText);
-
-        //dataBase.Initalize(data);
     }
 
 
@@ -104,6 +79,7 @@ public class DataManager : SingletonBase<DataManager>
         {
             case DataType.StageData: path = Paths.JsonPathStageData; break;
             case DataType.ItemData: path = Paths.JsonPathItem; break;
+            case DataType.StructureData: path = Paths.JsonPathStructure; break;
 
             default: path = ""; break;
         }
@@ -118,8 +94,6 @@ public class DataManager : SingletonBase<DataManager>
 
         string dataText = File.ReadAllText(path);
         var data = JsonConvert.DeserializeObject<List<T>>(dataText);
-
-        print(data);
 
         dataBase.Initalize(data);
 
