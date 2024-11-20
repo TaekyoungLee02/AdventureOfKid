@@ -6,9 +6,18 @@ using UnityEngine;
 
 public enum ItemType
 {
+    Heal = -1,
     MoveSpeedUp,
-    Heal,
-    Armor
+    Armor,
+    Hair,
+    Face,
+    HeadGear,
+    Top,
+    Bottom,
+    EyeWear,
+    Bag,
+    Shoes,
+    Glove
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "NewItem")]
