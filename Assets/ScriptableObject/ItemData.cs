@@ -21,4 +21,5 @@ public class ItemData : ScriptableObject
     public ItemType itemType;
     public int value;
     public GameObject gameObjectPrefab;
+    public Sprite icon;
 }

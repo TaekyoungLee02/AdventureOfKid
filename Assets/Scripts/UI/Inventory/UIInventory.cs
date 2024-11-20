@@ -19,6 +19,7 @@ public class UIInventory : MonoBehaviour
     public GameObject equipBtn;
     public GameObject unEquipBtn;
     //public GameObject dropBtn;
+    public GameObject hpGroup;
 
     //private PlayerController _controller;
     //private PlayerCondition _condition;
@@ -29,6 +30,8 @@ public class UIInventory : MonoBehaviour
     int curEquipIdx;
 
     public ItemData tempItem;
+    public ItemData tempItem2;
+    public ItemData tempItem3;
 
     // Start is called before the first frame update
     void Start()
@@ -51,12 +54,12 @@ public class UIInventory : MonoBehaviour
         }
 
         ClearSelectedItemWindow();
+        UpdateUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        ClearSelectedItemWindow();
     }
 
     private void ClearSelectedItemWindow()
@@ -172,7 +175,7 @@ public class UIInventory : MonoBehaviour
         selectedItemDescription.text = selectedItem.itemDescription;
 
         //selectedStatName.text = string.Empty;
-        selectedStatValue.text = string.Empty;
+        selectedStatValue.text = selectedItem.value.ToString();
 
         useBtn.SetActive(selectedItem.itemType == ItemType.MoveSpeedUp || selectedItem.itemType == ItemType.Heal);
         equipBtn.SetActive(selectedItem.itemType == ItemType.Armor && !slots[index].equipped);
@@ -192,6 +195,11 @@ public class UIInventory : MonoBehaviour
                     break;
                 case ItemType.Heal:
                     //_condition.Eat(selectedItem._consumables[i]._value);
+                    {
+                        // Temp
+                        var hp = Resources.Load<GameObject>("Prefabs/Hp");
+                        Instantiate(hp, hpGroup.transform);
+                    }
                     break;
             }
 
@@ -230,6 +238,10 @@ public class UIInventory : MonoBehaviour
         slots[selectedItemIdx].equipped = true;
         curEquipIdx = selectedItemIdx;
         CharacterManager.Instance.Player.Equipment.EquipNew(selectedItem);
+
+        var hp = Resources.Load<GameObject>("Prefabs/Hp");
+        Instantiate(hp, hpGroup.transform);
+
         UpdateUI();
 
         SelectItem(selectedItemIdx);
@@ -244,6 +256,9 @@ public class UIInventory : MonoBehaviour
     {
         slots[index].equipped = false;
         CharacterManager.Instance.Player.Equipment.UnEquip();
+
+        Destroy(hpGroup.transform.GetChild(0).gameObject);
+
         UpdateUI();
 
         if(selectedItemIdx == index)
@@ -257,5 +272,12 @@ public class UIInventory : MonoBehaviour
         if (tempItem == null) return;
 
         CharacterManager.Instance.Player.AddItem?.Invoke(tempItem);
+    }
+
+    public void TempAddItem2()
+    {
+        if (tempItem == null) return;
+
+        CharacterManager.Instance.Player.AddItem?.Invoke(tempItem2);
     }
 }
