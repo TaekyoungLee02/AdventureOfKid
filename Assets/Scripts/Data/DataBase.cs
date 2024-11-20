@@ -21,6 +21,12 @@ public class DataBase<T> where T : DataTypeBase
 
     public T GetData(int id)
     {
-        return _datas[id];
+        if (_datas[id] != null) return _datas[id];
+
+        else
+        {
+            Debug.LogError($"Database Does Not Have Key : {id}");
+            return null;
+        }
     }
 }
