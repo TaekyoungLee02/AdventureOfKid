@@ -73,7 +73,7 @@ public class PlayerThirdCamera : MonoBehaviour
     {
         var cameraPos = LookAt.position + transform.TransformDirection(new Vector3(0, cameraOffsetY, cameraOffsetZ));
 
-        Ray cameraRay = new(LookAt.position, cameraPos);
+        Ray cameraRay = new(LookAt.position, cameraPos - LookAt.position);
         if (Physics.Raycast(cameraRay, out var hit, Vector3.Distance(LookAt.position, cameraPos), layerMask))
         {
             cameraPos = hit.point;

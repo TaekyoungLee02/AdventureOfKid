@@ -16,6 +16,8 @@ public class Customizing : MonoBehaviour
     [SerializeField] private GameObject customImages;
     [SerializeField] private Text[] numberText;
 
+    private SavePlayerCustomizeData savePlayerCustomizeData;
+
     private Dictionary<string, int> customData = new();
 
     private const int MaxParts = 17;
@@ -33,6 +35,8 @@ public class Customizing : MonoBehaviour
         UpdateAllCategoryCounts();
         UIManager.Instance.UpdateCustomInfoAction += UpdateAllCategoryCounts;
         gameObject.SetActive(false);
+
+        savePlayerCustomizeData = GetComponent<SavePlayerCustomizeData>();
     }
 
     public void UpdateAllCategoryCounts()
@@ -140,5 +144,7 @@ public class Customizing : MonoBehaviour
                 }
             }
         }
+
+        savePlayerCustomizeData.SaveData(customData);
     }
 }

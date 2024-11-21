@@ -10,16 +10,19 @@ public class DataManager : SingletonBase<DataManager>
     private DataBase<StageData> _stageData = new();
     private DataBase<ItemDataBase> _itemData = new();
     private DataBase<StructureData> _structureData = new();
+    private DataBase<PlayerData> _playerData = new();
 
     public DataBase<StageData> StageData { get { return _stageData; } }
     public DataBase<ItemDataBase> ItemData { get { return _itemData; } }
     public DataBase<StructureData> StructureData { get { return _structureData; } }
+    public DataBase<PlayerData> PlayerData { get { return _playerData; } }
 
     public enum DataType
     {
         StageData,
         ItemData,
         StructureData,
+        PlayerData,
     }
 
     private new void Awake()
@@ -29,6 +32,7 @@ public class DataManager : SingletonBase<DataManager>
         _itemData = LoadData<ItemDataBase>(DataType.ItemData);
         _stageData = LoadData<StageData>(DataType.StageData);
         _structureData = LoadData<StructureData>(DataType.StructureData);
+        _playerData = LoadData<PlayerData>(DataType.PlayerData);
     }
 
     private void Start()
@@ -37,7 +41,8 @@ public class DataManager : SingletonBase<DataManager>
 
         //_stageData = LoadData<StageData>(DataType.StageData);
 
-
+        //SavePlayerCustomizeData s = new();
+        //s.SaveData(new Dictionary<string, int>());
     }
 
     public void SaveStageData()
@@ -80,6 +85,7 @@ public class DataManager : SingletonBase<DataManager>
             case DataType.StageData: path = Paths.JsonPathStageData; break;
             case DataType.ItemData: path = Paths.JsonPathItem; break;
             case DataType.StructureData: path = Paths.JsonPathStructure; break;
+            case DataType.PlayerData: path = Paths.JsonPathPlayer; break;
 
             default: path = ""; break;
         }
