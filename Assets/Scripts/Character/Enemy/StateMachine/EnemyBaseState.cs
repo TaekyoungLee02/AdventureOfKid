@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEditorInternal;
 
 public class EnemyBaseState : IState
 {
