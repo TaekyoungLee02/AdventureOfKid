@@ -17,6 +17,8 @@ public class Customizing : MonoBehaviour
 
     private Dictionary<string, int> customData = new();
 
+    private const int MaxParts = 17;
+
     GameObject[] imageObject;
 
     public Dictionary<string, int> CustomData
@@ -28,9 +30,10 @@ public class Customizing : MonoBehaviour
     {
         CreateImageObject();
         UpdateAllCategoryCounts();
+        UIManager.Instance.UpdateCustomInfoAction += UpdateAllCategoryCounts;
     }
 
-    void UpdateAllCategoryCounts()
+    public void UpdateAllCategoryCounts()
     {
         for (int i = 0; i < playerParts.Length; i++)
         {
@@ -54,9 +57,9 @@ public class Customizing : MonoBehaviour
 
     void CreateImageObject()
     {
-        imageObject = new GameObject[17];
+        imageObject = new GameObject[MaxParts];
 
-        for (int i = 0; i < 17; i++)
+        for (int i = 0; i < MaxParts; i++)
         {
             imageObject[i] = new GameObject("Image", typeof(Image));
             imageObject[i].transform.SetParent(customImages.transform);

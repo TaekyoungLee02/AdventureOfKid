@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,19 +19,11 @@ public class CustomData : IDataInitializer
 public class UIShop : MonoBehaviour
 {
     [SerializeField] private GameObject[] itemImageFrame;
+    [SerializeField] private GameObject[] playerParts;
+    [SerializeField] private Text buyText;
+    [SerializeField] private GameObject panel;
 
     private List<Sprite[]> sprites = new List<Sprite[]>();
-    private Sprite[] hairSprite;
-    private Sprite[] faceSprite;
-    private Sprite[] headGearSprite;
-    private Sprite[] topSprite;
-    private Sprite[] bottomSprite;
-    private Sprite[] eyeWearSprite;
-    private Sprite[] bagSprite;
-    private Sprite[] shoesSprite;
-    private Sprite[] gloveSprite;
-
-    private List<Sprite> allSprite = new();
 
     Image[] itemImage;
     Text[] itemGoldText;
@@ -43,27 +36,28 @@ public class UIShop : MonoBehaviour
 
     void LoadAllSprite()
     {
-        //hairSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair");
-        //faceSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face");
-        headGearSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/HeadGear");
-        topSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Top");
-        bottomSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/EyeWear");
-        eyeWearSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Bag");
-        bagSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Bag");
-        shoesSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Shoes");
-        gloveSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Glove");
+        AddAndSortSprites("Sprites/CustomIcon/Hair");
+        AddAndSortSprites("Sprites/CustomIcon/Face");
+        AddAndSortSprites("Sprites/CustomIcon/HeadGear");
+        AddAndSortSprites("Sprites/CustomIcon/Top");
+        AddAndSortSprites("Sprites/CustomIcon/Bottom");
+        AddAndSortSprites("Sprites/CustomIcon/EyeWear");
+        AddAndSortSprites("Sprites/CustomIcon/Bag");
+        AddAndSortSprites("Sprites/CustomIcon/Shoes");
+        AddAndSortSprites("Sprites/CustomIcon/Glove");
+    }
 
-        sprites.Add(Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair"));
-        sprites.Add(Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face"));
-        sprites.Add(headGearSprite);
-        sprites.Add(topSprite);
-        sprites.Add(bottomSprite);
-        sprites.Add(eyeWearSprite);
-        sprites.Add(bagSprite);
-        sprites.Add(shoesSprite);
-        sprites.Add(gloveSprite);
+    void AddAndSortSprites(string path)
+    {
+        Sprite[] loadedSprites = Resources.LoadAll<Sprite>(path);
+        Array.Sort(loadedSprites, (a, b) => ExtractNumber(a.name).CompareTo(ExtractNumber(b.name)));
+        sprites.Add(loadedSprites);
+    }
 
-        //allSprite.Add(hairSprite, faceSprite, headGearSprite, topSprite, bottomSprite, eyeWearSprite, bagSprite, shoesSprite, gloveSprite);
+    private int ExtractNumber(string name)
+    {
+        string numberPart = System.Text.RegularExpressions.Regex.Match(name, @"\d+").Value;
+        return string.IsNullOrEmpty(numberPart) ? 0 : int.Parse(numberPart);
     }
 
     public void ExitButton()
@@ -94,7 +88,12 @@ public class UIShop : MonoBehaviour
 
     void ResetAllImage()
     {
-        
+        for (int i = 0; i < itemImage.Length; i++)
+        {
+            itemImageFrame[i].gameObject.SetActive(false);
+            itemImage[i].GetComponent<Image>().sprite = null;
+            itemImageFrame[i].GetComponent<Button>().onClick.RemoveAllListeners();
+        }
     }
 
     public void CategoryButton(int index)
@@ -105,11 +104,46 @@ public class UIShop : MonoBehaviour
         {
             itemImageFrame[i].gameObject.SetActive(true);
             itemImage[i].sprite = sprites[index][i];
+            itemImage[i].name = sprites[index][i].name;
+            int temp = index;
+            itemImageFrame[i].GetComponent<Button>().onClick.AddListener(() => BuyButton(temp));
         }
     }
 
-    public void BuyButton(int index)
+    void BuyButton(int index)
     {
+        if (UIManager.Instance.GetCoin() >= int.Parse(itemGoldText[index].text.Substring(0, itemGoldText[index].text.Length - 1)))
+        {
+            foreach (var parts in playerParts)
+            {
+                for (int i = 0; i < itemImage.Length; i++)
+                {
+                    if (itemImage[i].name == parts.transform.GetChild(index).name && parts.transform.GetChild(index).GetComponent<Image>().sprite == null)
+                    {
+                        panel.SetActive(true);
+                        buyText.text = "구매를 완료했습니다.";
+                        parts.transform.GetChild(index).GetComponent<Image>().sprite = itemImage[i].sprite;
+                        itemImage[i].gameObject.SetActive(false);
+                        UIManager.Instance.SubstractCoin(int.Parse(itemGoldText[i].text.Substring(0, itemGoldText[i].text.Length - 1)));
+                        UIManager.Instance.UpdateCustomInfo();
+                    }
+                    else if (parts.transform.GetChild(index).GetComponent<Image>().sprite != null)
+                    {
+                        panel.SetActive(true);
+                        buyText.text = "이미 가지고 있는 아이템 입니다.";
+                    }
+                }
+            }
+        }
+        else
+        {
+            panel.SetActive(true);
+            buyText.text = "골드가 부족합니다.";
+        }
+    }
 
+    public void ExitPanel()
+    {
+        panel.SetActive(false);
     }
 }
