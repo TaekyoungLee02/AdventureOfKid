@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11526533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &11526533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 200G
 --- !u!222 &195792624
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -902,7 +914,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 300G
 --- !u!222 &230459022
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1214,7 +1226,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 200G
 --- !u!222 &360870980
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1293,7 +1305,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 200G
 --- !u!222 &382488339
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3973,7 +3985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 200G
 --- !u!222 &772285911
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5084,7 +5096,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 968342877}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &968342877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5193,7 +5217,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 200G
 --- !u!222 &968863612
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5908,7 +5932,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 300G
 --- !u!222 &1096907067
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6462,7 +6486,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1200694079}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1200694079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7066,7 +7102,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 200G
 --- !u!222 &1286379704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7371,7 +7407,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1328895095}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1328895095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8603,7 +8651,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1523008853}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1523008853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9121,7 +9181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 300G
 --- !u!222 &1571214961
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9531,7 +9591,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1664268760}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1664268760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9794,7 +9866,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 300G
 --- !u!222 &1675599452
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10036,7 +10108,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1774974398}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1774974398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11044,7 +11128,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100G
+  m_Text: 300G
 --- !u!222 &1954912723
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11407,7 +11491,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2129876846}
         m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
         m_MethodName: CategoryButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11838,7 +11922,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2075882197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2129876846}
+        m_TargetAssemblyTypeName: UIShop, Assembly-CSharp
+        m_MethodName: CategoryButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2075882197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12062,6 +12158,16 @@ MonoBehaviour:
   - {fileID: 61591497}
   - {fileID: 1182992920}
   - {fileID: 873889406}
+  playerParts:
+  - {fileID: 6643712263069557410}
+  - {fileID: 8894804719295292466}
+  - {fileID: 8396634236645247786}
+  - {fileID: 1945115898559986458}
+  - {fileID: 8194913801496912416}
+  - {fileID: 4823362669399779089}
+  - {fileID: 8270111342138972159}
+  - {fileID: 5611258580171545839}
+  - {fileID: 2117982515559602466}
 --- !u!1 &2146169927
 GameObject:
   m_ObjectHideFlags: 0
