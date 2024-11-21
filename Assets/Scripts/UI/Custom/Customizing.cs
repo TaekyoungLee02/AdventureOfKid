@@ -31,6 +31,7 @@ public class Customizing : MonoBehaviour
         CreateImageObject();
         UpdateAllCategoryCounts();
         UIManager.Instance.UpdateCustomInfoAction += UpdateAllCategoryCounts;
+        gameObject.SetActive(false);
     }
 
     public void UpdateAllCategoryCounts()
@@ -98,10 +99,6 @@ public class Customizing : MonoBehaviour
                     GetImageObject(i).name = playerParts[index].transform.GetChild(i).name;
                     GetImageObject(i).GetComponent<Button>().onClick.AddListener(EquipCustom);
                 }
-            }
-            else
-            {
-                return;
             }
        }
     }
