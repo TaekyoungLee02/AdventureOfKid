@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Customize"",
+                    ""type"": ""Button"",
+                    ""id"": ""919031bf-9fe5-4603-9e93-0d95c6b8f2db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bac6a086-045f-4be9-af9f-48a67e5823d2"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Customize"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -257,6 +277,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_PrimaryTouch = m_Player.FindAction("PrimaryTouch", throwIfNotFound: true);
         m_Player_SecondaryTouch = m_Player.FindAction("SecondaryTouch", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Customize = m_Player.FindAction("Customize", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -323,6 +344,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PrimaryTouch;
     private readonly InputAction m_Player_SecondaryTouch;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Customize;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -332,6 +354,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @PrimaryTouch => m_Wrapper.m_Player_PrimaryTouch;
         public InputAction @SecondaryTouch => m_Wrapper.m_Player_SecondaryTouch;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Customize => m_Wrapper.m_Player_Customize;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -356,6 +379,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Customize.started += instance.OnCustomize;
+            @Customize.performed += instance.OnCustomize;
+            @Customize.canceled += instance.OnCustomize;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -375,6 +401,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Customize.started -= instance.OnCustomize;
+            @Customize.performed -= instance.OnCustomize;
+            @Customize.canceled -= instance.OnCustomize;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -417,5 +446,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPrimaryTouch(InputAction.CallbackContext context);
         void OnSecondaryTouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCustomize(InputAction.CallbackContext context);
     }
 }
