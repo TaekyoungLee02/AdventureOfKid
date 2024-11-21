@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -11,7 +12,7 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Customizing : MonoBehaviour
 {
-    [SerializeField] private GameObject[] playerParts;
+    [SerializeField] private GameObject[] playerParts = new GameObject[8];
     [SerializeField] private GameObject customImages;
     [SerializeField] private Text[] numberText;
 
@@ -31,10 +32,16 @@ public class Customizing : MonoBehaviour
         CreateImageObject();
         UpdateAllCategoryCounts();
         UIManager.Instance.UpdateCustomInfoAction += UpdateAllCategoryCounts;
+        gameObject.SetActive(false);
     }
 
     public void UpdateAllCategoryCounts()
     {
+        var parts = FindObjectOfType<PlayerCustomizeApplier>().gameObject;
+
+        for(int i = 0; i < parts.transform.childCount; ++i)
+            playerParts[i] = parts.transform.GetChild(i).gameObject;
+
         for (int i = 0; i < playerParts.Length; i++)
         {
             int spriteCount = CountSpritesInCategory(i);
@@ -47,6 +54,8 @@ public class Customizing : MonoBehaviour
         int count = 0;
         for (int i = 0; i < playerParts[index].transform.childCount; i++)
         {
+            playerParts[index].transform.GetChild(i).AddComponent<Image>();
+
             if (playerParts[index].transform.GetChild(i).GetComponent<Image>().sprite != null)
             {
                 count++;
@@ -98,10 +107,6 @@ public class Customizing : MonoBehaviour
                     GetImageObject(i).name = playerParts[index].transform.GetChild(i).name;
                     GetImageObject(i).GetComponent<Button>().onClick.AddListener(EquipCustom);
                 }
-            }
-            else
-            {
-                return;
             }
        }
     }

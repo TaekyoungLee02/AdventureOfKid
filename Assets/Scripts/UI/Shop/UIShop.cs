@@ -32,6 +32,7 @@ public class UIShop : MonoBehaviour
     {
         LoadAllSprite();
         ItemAllSetting();
+        gameObject.SetActive(false);
     }
 
     void LoadAllSprite()
@@ -105,29 +106,28 @@ public class UIShop : MonoBehaviour
             itemImageFrame[i].gameObject.SetActive(true);
             itemImage[i].sprite = sprites[index][i];
             itemImage[i].name = sprites[index][i].name;
-            int temp = index;
+            int temp = i;
             itemImageFrame[i].GetComponent<Button>().onClick.AddListener(() => BuyButton(temp));
         }
     }
 
-    void BuyButton(int index)
+    void BuyButton(int itemIndex)
     {
-        if (UIManager.Instance.GetCoin() >= int.Parse(itemGoldText[index].text.Substring(0, itemGoldText[index].text.Length - 1)))
+        if (UIManager.Instance.GetCoin() >= int.Parse(itemGoldText[itemIndex].text.Substring(0, itemGoldText[itemIndex].text.Length - 1)))
         {
             foreach (var parts in playerParts)
             {
-                for (int i = 0; i < itemImage.Length; i++)
+                for (int i = 0; i < parts.transform.childCount; i++)
                 {
-                    if (itemImage[i].name == parts.transform.GetChild(index).name && parts.transform.GetChild(index).GetComponent<Image>().sprite == null)
+                    if (itemImage[itemIndex].name == parts.transform.GetChild(i).name && parts.transform.GetChild(i).GetComponent<Image>().sprite == null)
                     {
                         panel.SetActive(true);
                         buyText.text = "구매를 완료했습니다.";
-                        parts.transform.GetChild(index).GetComponent<Image>().sprite = itemImage[i].sprite;
-                        itemImage[i].gameObject.SetActive(false);
-                        UIManager.Instance.SubstractCoin(int.Parse(itemGoldText[i].text.Substring(0, itemGoldText[i].text.Length - 1)));
+                        parts.transform.GetChild(i).GetComponent<Image>().sprite = itemImage[itemIndex].sprite;
+                        UIManager.Instance.SubstractCoin(int.Parse(itemGoldText[itemIndex].text.Substring(0, itemGoldText[itemIndex].text.Length - 1)));
                         UIManager.Instance.UpdateCustomInfo();
                     }
-                    else if (parts.transform.GetChild(index).GetComponent<Image>().sprite != null)
+                    else if (itemImage[itemIndex].name == parts.transform.GetChild(i).name && parts.transform.GetChild(i).GetComponent<Image>().sprite != null)
                     {
                         panel.SetActive(true);
                         buyText.text = "이미 가지고 있는 아이템 입니다.";
