@@ -8,7 +8,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Collider myCollider;
 
     private int damage;
-    private float damageRate = 1f;
     private float knockback;
 
     private List<Collider> alreadyCollider = new List<Collider>();
@@ -39,10 +38,10 @@ public class Weapon : MonoBehaviour
 
         alreadyCollider.Add(other);
 
-        //if (other.TryGetComponent(out IDamageable damage))
-        //{
-        //    damage.TakePhysicalDamage(Convert.ToInt32(_damage * _damageRate));
-        //}
+        if (other.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakePhysicalDamage(damage);
+        }
 
         //if (other.TryGetComponent(out ForceReceiver force))
         //{
@@ -55,10 +54,5 @@ public class Weapon : MonoBehaviour
     {
         this.damage = damage;
         this.knockback = knockback;
-    }
-
-    public void SetDamageRate(float damageRate)
-    {
-        this.damageRate = damageRate;
     }
 }

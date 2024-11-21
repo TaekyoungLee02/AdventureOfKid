@@ -3,30 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCondition : MonoBehaviour//, IDamageable
+public interface IDamageable
 {
-    //[SerializeField] private Condition _hp;
+    public void TakePhysicalDamage(int damage);
+}
 
-    //private event Action<int> ExpHandler;
-    //private event Action<int> GoldHandler;
+public class EnemyCondition : MonoBehaviour, IDamageable
+{
+    [SerializeField] private int hp = 1;
 
     public bool _isDie;
 
-    private void Awake()
-    {
-        //_hp._startValue = GetComponent<Enemy>().Data.hp;
-        //_hp._maxValue = GetComponent<Enemy>().Data.hp;
-    }
-
-    private void Start()
-    {
-        //ExpHandler += CharacterManager.Instance.Player.Condition.IncreaseEXP;
-       // GoldHandler += InventoryManager.Instance.Currency._goldCoin.Add;
-    }
-
     void Update()
     {
-        //if (_hp._curValue == 0f && !_isDie)
+        if (hp == 0 && !_isDie)
         {
             Die();
             _isDie = true;
@@ -35,21 +25,20 @@ public class EnemyCondition : MonoBehaviour//, IDamageable
 
     public void TakePhysicalDamage(int damage)
     {
-        //_hp.Subtract(damage);
+        hp -= damage;
+
+        // TODO : Damage State 진입
+
+        if (hp < 0)
+            hp = 0;
     }
 
     public void Die()
     {
-        // TODO : 사망 애니메이션 재생 후, 삭제로 변경
-
         Enemy enemy = GetComponent<Enemy>();
 
         enemy.Animator.SetTrigger("Die");
 
-        //EnemySO data = enemy.Data;
-
-        //ExpHandler?.Invoke(data.exp);
-        //GoldHandler?.Invoke(data.goldCoin);
         enemy.RemoveTarget?.Invoke();
 
         GetComponent<CharacterController>().enabled = false;
