@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5028582447207276154}
   - component: {fileID: 3722699629940490229}
   - component: {fileID: 8446540981027818134}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Hill_desert_004.001 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1166275255686619943}
   - component: {fileID: 5379652224955715364}
   - component: {fileID: 4642522213117673514}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Hill_desert_004.001 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 3882288070777718389}
   - component: {fileID: 8347074567187379450}
   - component: {fileID: 3095604690099074517}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hill_desert_004.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 5443155074688378940}
   - component: {fileID: 1656052519207568595}
   - component: {fileID: 2792276956625594094}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: CrossPlains_Floating_Island_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 7953199941660378289}
   - component: {fileID: 3155987139254980723}
   - component: {fileID: 7763502346999789322}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: floe.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7333972148443351096}
   - component: {fileID: 6653169115163904339}
   - component: {fileID: 8127655770831701389}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Mounting_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

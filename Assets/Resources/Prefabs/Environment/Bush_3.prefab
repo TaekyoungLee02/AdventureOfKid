@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 436196127257556102}
   - component: {fileID: 4710367047006950000}
   - component: {fileID: -937575358358357124}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Bush_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

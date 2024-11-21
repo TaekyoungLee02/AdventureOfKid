@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4437111989181544877}
   - component: {fileID: 1886700103736410052}
   - component: {fileID: 3105366124748863830}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: floe-deep.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 807025004559737517}
   - component: {fileID: 5195748677613829219}
   - component: {fileID: 5854670682191817150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrossPlains_Floating_Island_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 2581842724165858338}
   - component: {fileID: 4524331150347158273}
   - component: {fileID: 5844646640547664130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: floe.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}

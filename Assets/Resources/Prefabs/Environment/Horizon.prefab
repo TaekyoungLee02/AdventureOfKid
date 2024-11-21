@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6531200745485127676}
   - component: {fileID: 5749442178281081535}
   - component: {fileID: -7819994846686072763}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Horizon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

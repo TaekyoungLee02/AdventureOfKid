@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6381676913280196054}
   - component: {fileID: 7543761537206631434}
   - component: {fileID: 2131596041434256135}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6576175380721748607}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 6688007018047831589}
   - component: {fileID: 2292640192732528752}
   - component: {fileID: 7315062075242833648}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 6012975344498904986}
   - component: {fileID: 1462756303742929838}
   - component: {fileID: 8445445508124547090}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 6977336334440584219}
   - component: {fileID: 3513826239051272992}
   - component: {fileID: 3376886067361641264}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 7921540947517209774}
   - component: {fileID: 5485359564301881403}
   - component: {fileID: 2110461518940495514}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628548945243961114}
   - component: {fileID: -9054080543579115870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 3934939242395158990}
   - component: {fileID: 1867769674411163388}
   - component: {fileID: 1604846891514683265}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Tree_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 3569157617183283668}
   - component: {fileID: 4202160204631018972}
   - component: {fileID: 6784451143822351415}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Leaves_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

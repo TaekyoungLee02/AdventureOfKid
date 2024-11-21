@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9083696801460554794}
   - component: {fileID: 165624415267145917}
   - component: {fileID: -6742734034594268232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrossPlains_Monuntain_Desert_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

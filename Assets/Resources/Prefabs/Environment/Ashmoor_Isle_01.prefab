@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5040500664767924017}
   - component: {fileID: 7800838193857084878}
   - component: {fileID: -5935267433097838453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ashmoor_Isle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

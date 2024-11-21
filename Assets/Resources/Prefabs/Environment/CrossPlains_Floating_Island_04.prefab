@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7566448254531865248}
   - component: {fileID: 9161029802778118853}
   - component: {fileID: 7051682175968114434}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: floe.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7507507124165697424}
   - component: {fileID: 5464456237770568931}
   - component: {fileID: 7353524227183105244}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hill_desert_005.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3410292293523979683}
   - component: {fileID: 2981801376423801459}
   - component: {fileID: 4649500053129352616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrossPlains_Floating_Island_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
