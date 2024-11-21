@@ -26,8 +26,8 @@ public class PlayerThirdCamera : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = Player.Instance.InputManager;
-        playerController = Player.Instance.PlayerController;
+        inputManager = GetComponentInParent<PlayerInputManager>();
+        playerController = GetComponentInParent<PlayerController>();
         axisInput = new(inputManager);
     }
 

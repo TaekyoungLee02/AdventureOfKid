@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : SingletonBase<Player>
+public class Player : MonoBehaviour
 {
     private PlayerInputManager inputManager;
     private PlayerMovement playerMovement;
@@ -12,10 +12,8 @@ public class Player : SingletonBase<Player>
     public PlayerMovement PlayerMovement { get { return playerMovement; } }
     public PlayerController PlayerController { get { return playerController; } }
 
-    private new void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         inputManager = GetComponent<PlayerInputManager>();
         playerMovement = GetComponent<PlayerMovement>();
         playerController = GetComponent<PlayerController>();
