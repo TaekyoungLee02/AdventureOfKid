@@ -19,6 +19,7 @@ public class UIShop : MonoBehaviour
 {
     [SerializeField] private GameObject[] itemImageFrame;
 
+    private List<Sprite[]> sprites = new List<Sprite[]>();
     private Sprite[] hairSprite;
     private Sprite[] faceSprite;
     private Sprite[] headGearSprite;
@@ -36,14 +37,14 @@ public class UIShop : MonoBehaviour
 
     private void Start()
     {
+        LoadAllSprite();
         ItemAllSetting();
-        
     }
 
     void LoadAllSprite()
     {
-        hairSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair");
-        faceSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face");
+        //hairSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair");
+        //faceSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face");
         headGearSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/HeadGear");
         topSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Top");
         bottomSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/EyeWear");
@@ -51,6 +52,16 @@ public class UIShop : MonoBehaviour
         bagSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Bag");
         shoesSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Shoes");
         gloveSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Glove");
+
+        sprites.Add(Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair"));
+        sprites.Add(Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face"));
+        sprites.Add(headGearSprite);
+        sprites.Add(topSprite);
+        sprites.Add(bottomSprite);
+        sprites.Add(eyeWearSprite);
+        sprites.Add(bagSprite);
+        sprites.Add(shoesSprite);
+        sprites.Add(gloveSprite);
 
         //allSprite.Add(hairSprite, faceSprite, headGearSprite, topSprite, bottomSprite, eyeWearSprite, bagSprite, shoesSprite, gloveSprite);
     }
@@ -81,17 +92,19 @@ public class UIShop : MonoBehaviour
         }
     }
 
-    void RestAllImage()
+    void ResetAllImage()
     {
         
     }
 
-    public void CategoryButton()
+    public void CategoryButton(int index)
     {
-        for (int i = 0; i < itemImage.Length; i++)
+        ResetAllImage();
+
+        for (int i = 0; i < sprites[index].Length; i++)
         {
             itemImageFrame[i].gameObject.SetActive(true);
-            itemImage[i].sprite = bagSprite[i];
+            itemImage[i].sprite = sprites[index][i];
         }
     }
 

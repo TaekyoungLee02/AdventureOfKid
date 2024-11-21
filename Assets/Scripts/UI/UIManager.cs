@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     private ObjectPool effectPools;
     private GameObject curUseEffect;
 
+    private GameObject[][] ga;
     private bool isPause;
 
     public Action<int> AddCoinAction;
@@ -53,6 +54,8 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        ga = new GameObject[0][];
     }
 
     public void PauseClient()
