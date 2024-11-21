@@ -63,7 +63,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void OnJump()
     {
-        if (playerMovement.CanJump)
+        if (playerMovement.IsGrounded)
         {
             animator.SetTrigger(animatorHashes["OnJump"]);
         }

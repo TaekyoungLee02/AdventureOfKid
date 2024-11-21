@@ -7,9 +7,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     private static UIManager instance;
-    private ObjectPool effectPools;
-    private GameObject curUseEffect;
-
+    
     private bool isPause;
 
     public Action<int> AddCoinAction;
@@ -31,6 +29,9 @@ public class UIManager : MonoBehaviour
         RemoveDuplicates();
 
         DOTween.Init();
+
+        GameObject uiCanvas = Resources.Load<GameObject>("Prefabs/UICanvas");
+        Instantiate(uiCanvas);
     }
 
     private static void Init()
