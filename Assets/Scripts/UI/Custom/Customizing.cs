@@ -30,9 +30,10 @@ public class Customizing : MonoBehaviour
     {
         CreateImageObject();
         UpdateAllCategoryCounts();
+        UIManager.Instance.UpdateCustomInfoAction += UpdateAllCategoryCounts;
     }
 
-    void UpdateAllCategoryCounts()
+    public void UpdateAllCategoryCounts()
     {
         for (int i = 0; i < playerParts.Length; i++)
         {

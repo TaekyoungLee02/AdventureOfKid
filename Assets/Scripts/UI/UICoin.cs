@@ -6,7 +6,7 @@ using UnityEngine;
 public class UICoin : MonoBehaviour
 {
     private TextMeshProUGUI coinText;
-    private int coin;
+    private int coin = 1000;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class UICoin : MonoBehaviour
     void Start()
     {
         UIManager.Instance.AddCoinAction += AddCoin;
-        UIManager.Instance.SubstractCoinAction += AddCoin;
+        UIManager.Instance.SubstractCoinAction += SubstractCoin;
         UIManager.Instance.GetCoinFunc += GetCoin;
     }
 
@@ -27,7 +27,7 @@ public class UICoin : MonoBehaviour
         coinText.text = coin.ToString();
     }
 
-    private void SubstractCoint(int amount)
+    private void SubstractCoin(int amount)
     {
         coin -= amount;
         coinText.text = coin.ToString();

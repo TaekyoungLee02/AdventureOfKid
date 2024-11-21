@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     public Action<int> AddCoinAction;
     public Action<int> SubstractCoinAction;
+    public Action UpdateCustomInfoAction;
     public Func<int> GetCoinFunc;
 
     public static UIManager Instance
@@ -79,5 +80,10 @@ public class UIManager : MonoBehaviour
     public int GetCoin()
     {
         return (int)GetCoinFunc?.Invoke();
+    }
+
+    public void UpdateCustomInfo()
+    {
+        UpdateCustomInfoAction?.Invoke();
     }
 }
