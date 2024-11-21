@@ -11,7 +11,7 @@ public class JumpPlatform : MonoBehaviour
         PlayerController pc = other.GetComponent<PlayerController>();
         if (pc != null)
         {
-            pc.MakePlayerJump(JumpForce);
+            pc.MakePlayerJump(transform.up * JumpForce);
         }
     }
 }

@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class Spike : MonoBehaviour, IDataInitializer
 {
     public float DamageAmount = 10f; // 피해량 설정
     public float DamageAngle = 90f;  // 피해를 줄 각도 범위
+
+    public void Initialize(List<int> values)
+    {
+        DamageAmount = values[0];
+        DamageAngle = values[1];
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,4 +32,6 @@ public class Spike : MonoBehaviour
             Debug.Log("가시 통과");
         }
     }
+
+
 }
