@@ -9,20 +9,30 @@ public class PlayerMovement : MonoBehaviour
     private float speed;
     [SerializeField]
     private float defaultJumpPower;
-    private float jumpPower;
+    private Vector3 jumpVector;
     private bool isJumping;
+    private bool isGrounded;
+    private bool isOnStructure;
     private float moveDirectionY;
+
+    [SerializeField] private LayerMask groundMask;
 
     private Transform playerCamera;
     private Rigidbody playerRB;
     private BoxCollider footCollider;
     private PlayerController playerController;
 
+    private float lastUpdateFrame;
+
     public bool IsGrounded
     {
         get
         {
             return CheckGround();
+        }
+        set
+        {
+            isGrounded = value;
         }
     }
 
@@ -63,17 +73,21 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping && IsGrounded)
         {
-            moveDirectionY = jumpPower;
             isJumping = false;
+        }
+        else if (isOnStructure)
+        {
+            isJumping = false;
+            isOnStructure = false;
         }
         else if (!isJumping && IsGrounded)
         {
-            moveDirectionY = 0;
+            jumpVector = Vector3.zero;
         }
 
         if (!IsGrounded)
         {
-            moveDirectionY += (Physics.gravity.y * Time.fixedDeltaTime);
+            jumpVector.y += (Physics.gravity.y * Time.fixedDeltaTime);
         }
 
         Vector3 lookDirection = moveDirection;
@@ -85,36 +99,42 @@ public class PlayerMovement : MonoBehaviour
             transform.forward = lookDirection;
         }
 
-        //Debug.Log(speed * new Vector3(lookDirection.x, moveDirectionY, lookDirection.z));
+        Vector3 finalVector = lookDirection + jumpVector;
 
-        playerRB.velocity = speed * new Vector3(lookDirection.x, moveDirectionY, lookDirection.z);
+        playerRB.velocity = speed * finalVector;
     }
 
     private void Jump()
     {
         if (IsGrounded && !isJumping)
         {
-            jumpPower = defaultJumpPower;
+            jumpVector = new Vector3(0, defaultJumpPower, 0);
             isJumping = true;
         }
     }
-    public void Jump(float jumpPower)
+    public void Jump(Vector3 jumpVector)
     {
-        if (IsGrounded)
+        if (!isJumping)
         {
-            this.jumpPower = jumpPower;
+            this.jumpVector = jumpVector;
             isJumping = true;
+            isOnStructure = true;
         }
     }
 
     public bool CheckGround()
     {
-        return Physics.SphereCast(transform.position, 0.1f, Vector3.down, out var hit);
+        if (Time.frameCount == lastUpdateFrame)
+            return isGrounded;
+        lastUpdateFrame = Time.frameCount;
+
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.3f, groundMask);
+        return isGrounded;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 0.1f);
+        Gizmos.DrawRay(transform.position, Vector3.down);
     }
 }

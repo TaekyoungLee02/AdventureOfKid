@@ -55,9 +55,9 @@ public class PlayerInputManager : MonoBehaviour
             playerInput.Player.SecondaryTouch.performed += Look;
             playerInput.Player.SecondaryTouch.canceled += Look;
 
-            joystick.OnTouchscreenMove += TouchScreenMove;
-            jumpUI.OnTouchscreenJump += TouchScreenJump;
-            customizeButtonUI.OnCustomizeOpen += TouchScreenCustomizeButton;
+            //joystick.OnTouchscreenMove += TouchScreenMove;
+            //jumpUI.OnTouchscreenJump += TouchScreenJump;
+            //customizeButtonUI.OnCustomizeOpen += TouchScreenCustomizeButton;
 
 #else
 

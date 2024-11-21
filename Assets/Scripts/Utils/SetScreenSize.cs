@@ -30,7 +30,7 @@ public class SetScreenSize : MonoBehaviour
 
         float newRate;
 
-        //Screen.SetResolution(width, (int)((float)currentHeight / currentWidth) * width, true);
+        Screen.SetResolution(width, (int)((float)currentHeight / currentWidth) * width, true);
 
         if (currentRate == defaultRate) return;
         else if (currentRate > defaultRate)
