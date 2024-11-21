@@ -7,6 +7,7 @@ public class StageManager : MonoBehaviour
     private StageLoader stageLoader;
     private StructureLoader structureLoader;
     private ItemLoader itemLoader;
+    private PlayerLoader playerLoader;
 
 
     private void Start()
@@ -14,6 +15,7 @@ public class StageManager : MonoBehaviour
         stageLoader = new();
         structureLoader = new();
         itemLoader = new();
+        playerLoader = new();
 
         SpawnFromData(1);
     }
@@ -25,6 +27,7 @@ public class StageManager : MonoBehaviour
 
         SpawnObject(data.structures, structureLoader);
         SpawnObject(data.items, itemLoader);
+        SpawnPlayer(data.playerVector);
     }
 
     private void SpawnObject<T>(List<StageObject> objects, DataLoader<T> dataLoader) where T : DataTypeBase
@@ -51,5 +54,14 @@ public class StageManager : MonoBehaviour
             go.transform.SetPositionAndRotation(objects[i].position.ToVector3(), Quaternion.Euler(objects[i].rotation.ToVector3()));
             go.transform.localScale = objects[i].scale.ToVector3();
         }
+    }
+
+    private void SpawnPlayer(StageObject playerVector)
+    {
+        playerLoader.LoadData(0);
+
+        var player = Instantiate(playerLoader.GetData(0) as GameObject);
+        player.transform.SetPositionAndRotation(playerVector.position.ToVector3(), Quaternion.Euler(playerVector.rotation.ToVector3()));
+        player.transform.localScale = playerVector.scale.ToVector3();
     }
 }

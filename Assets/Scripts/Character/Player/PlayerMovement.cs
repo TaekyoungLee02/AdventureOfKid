@@ -69,8 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector2 moveDirection)
     {
-        print(IsGrounded);
-
         if (isJumping && IsGrounded)
         {
             isJumping = false;
@@ -130,11 +128,5 @@ public class PlayerMovement : MonoBehaviour
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.3f, groundMask);
         return isGrounded;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, Vector3.down);
     }
 }

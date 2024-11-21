@@ -22,7 +22,7 @@ public class PlayerCustomizeApplier : MonoBehaviour
 
     public void ApplyCustomize(Dictionary<string, int> customData)
     {
-        foreach (var data  in customData)
+        foreach (var data in customData)
         {
             Parts part;
 

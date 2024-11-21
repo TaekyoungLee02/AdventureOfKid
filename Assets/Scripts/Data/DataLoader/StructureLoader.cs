@@ -17,7 +17,9 @@ public class StructureLoader : DataLoader<StructureData>
         if (loadedFile is GameObject)
         {
             var go = loadedFile as GameObject;
-            var init = go.GetComponent<IDataInitializer>();
+
+            var init = go.GetComponentInChildren<IDataInitializer>();
+            init ??= go.GetComponent<IDataInitializer>();
 
             if (init != null)
             {
