@@ -19,6 +19,7 @@ public class CustomData : IDataInitializer
 public class UIShop : MonoBehaviour
 {
     [SerializeField] private GameObject[] itemImageFrame;
+    [SerializeField] private GameObject[] playerParts;
 
     private List<Sprite[]> sprites = new List<Sprite[]>();
 
@@ -101,11 +102,20 @@ public class UIShop : MonoBehaviour
         {
             itemImageFrame[i].gameObject.SetActive(true);
             itemImage[i].sprite = sprites[index][i];
+            itemImage[i].name = sprites[index][i].name;
+            int temp = i;
+            itemImageFrame[i].GetComponent<Button>().onClick.AddListener(() => BuyButton(temp));
         }
     }
 
-    public void BuyButton(int index)
+    void BuyButton(int index)
     {
-
+        foreach (var parts in playerParts)
+        {
+            if(itemImage[index].name == parts.transform.GetChild(index).name)
+            {
+                parts.transform.GetChild(index).GetComponent<Image>().sprite = itemImage[index].sprite;
+            }
+        }
     }
 }
