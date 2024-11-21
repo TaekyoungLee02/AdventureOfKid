@@ -20,12 +20,6 @@ public class Spike : MonoBehaviour
         if (angle < DamageAngle)
         {
             Debug.Log("아야!?");
-            // TODO : 데미지 주기
-            //Health health = other.GetComponent<Health>();
-            //if (health != null)
-            //{
-            //    health.TakeDamage(DamageAmount);
-            //}
         }
         else
         {
