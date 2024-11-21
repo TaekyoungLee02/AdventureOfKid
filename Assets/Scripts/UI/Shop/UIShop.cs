@@ -52,7 +52,7 @@ public class UIShop : MonoBehaviour
         shoesSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Shoes");
         gloveSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Glove");
 
-        allSprite.Add(hairSprite, faceSprite, headGearSprite, topSprite, bottomSprite, eyeWearSprite, bagSprite, shoesSprite, gloveSprite);
+        //allSprite.Add(hairSprite, faceSprite, headGearSprite, topSprite, bottomSprite, eyeWearSprite, bagSprite, shoesSprite, gloveSprite);
     }
 
     public void ExitButton()
