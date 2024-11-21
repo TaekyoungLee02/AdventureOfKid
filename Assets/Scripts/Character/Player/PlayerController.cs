@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public event Action<Vector2> OnMove;
     public event Action OnLook;
     public event Action OnJump;
-    public event Action<float> OnStructureJump;
+    public event Action<Vector3> OnStructureJump;
 
     private void Awake()
     {
@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
         OnLook?.Invoke();
     }
 
-    public void MakePlayerJump(float jumpPower)
+    public void MakePlayerJump(Vector3 jumpVector)
     {
-        OnStructureJump?.Invoke(jumpPower);
+        OnStructureJump?.Invoke(jumpVector);
     }
 }
