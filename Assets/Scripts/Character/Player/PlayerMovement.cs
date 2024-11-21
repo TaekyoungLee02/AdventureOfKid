@@ -109,6 +109,12 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CheckGround()
     {
-        return !Physics.SphereCast(transform.position, 0.1f, Vector3.down, out var hit);
+        return Physics.SphereCast(transform.position, 0.1f, Vector3.down, out var hit);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }
