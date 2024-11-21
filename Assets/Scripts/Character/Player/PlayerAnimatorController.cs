@@ -34,7 +34,7 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         animatorHashes.Add("isMoving", Animator.StringToHash("isMoving"));
         animatorHashes.Add("isRunning", Animator.StringToHash("isRunning"));
-        animatorHashes.Add("isJumping", Animator.StringToHash("isJumping"));
+        animatorHashes.Add("OnJump", Animator.StringToHash("OnJump"));
     }
 
     private void InitAnimatorEvent()
@@ -65,7 +65,7 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         if (playerMovement.CanJump)
         {
-            animator.SetBool(animatorHashes["isJumping"], true);
+            animator.SetTrigger(animatorHashes["OnJump"]);
         }
     }
 }
