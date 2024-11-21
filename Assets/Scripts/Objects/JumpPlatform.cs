@@ -8,10 +8,10 @@ public class JumpPlatform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController PC = other.GetComponent<PlayerController>();
-        if (PC != null)
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            PC.MakePlayerJump(JumpForce);
+            rb.AddForce(transform.forward * JumpForce, ForceMode.Impulse);
         }
     }
 }
