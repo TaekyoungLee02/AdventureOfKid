@@ -30719,7 +30719,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2316279010297415439}
-  - component: {fileID: 1401591243308482531}
+  - component: {fileID: 8388694654289381008}
+  - component: {fileID: 6671447272702516232}
   - component: {fileID: 6414665573348199562}
   - component: {fileID: 5493585350045028486}
   - component: {fileID: 8506244044491493684}
@@ -30748,14 +30749,41 @@ Transform:
   - {fileID: 6767764431544436562}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1401591243308482531
-CharacterController:
+--- !u!54 &8388694654289381008
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8356190245983009934}
-  m_Material: {fileID: 0}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &6671447272702516232
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8356190245983009934}
+  m_Material: {fileID: 13400000, guid: 02b601bd0e7387547bde7f06e1088e4a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -30766,13 +30794,10 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.73
+  serializedVersion: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Height: 1.7
+  m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!114 &6414665573348199562
 MonoBehaviour:
@@ -30822,8 +30847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137fa447cae06d1419f340be0d8cba1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  defaultJumpPower: 2
+  speed: 5
+  defaultJumpPower: 5
 --- !u!1 &8421182683586433300
 GameObject:
   m_ObjectHideFlags: 0

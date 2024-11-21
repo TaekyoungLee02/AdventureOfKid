@@ -14,15 +14,22 @@ public class PlayerMovement : MonoBehaviour
     private float moveDirectionY;
 
     private Transform playerCamera;
-    private CharacterController playerCC;
+    private Rigidbody playerRB;
+    private BoxCollider footCollider;
     private PlayerController playerController;
 
-    public bool CanJump { get { return playerCC.isGrounded; } }
+    public bool IsGrounded
+    {
+        get
+        {
+            return CheckGround();
+        }
+    }
 
     private void Awake()
     {
         playerCamera = GetComponentInChildren<PlayerThirdCamera>().transform;
-        playerCC = GetComponent<CharacterController>();
+        playerRB = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
     }
 
@@ -52,12 +59,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector2 moveDirection)
     {
-        if (isJumping)
+        print(IsGrounded);
+
+        if (isJumping && IsGrounded)
         {
             moveDirectionY = jumpPower;
             isJumping = false;
         }
-        moveDirectionY += (Physics.gravity.y * Time.deltaTime);
+        else if (!isJumping && IsGrounded)
+        {
+            moveDirectionY = 0;
+        }
+
+        if (!IsGrounded)
+        {
+            moveDirectionY += (Physics.gravity.y * Time.fixedDeltaTime);
+        }
 
         Vector3 lookDirection = moveDirection;
 
@@ -68,12 +85,14 @@ public class PlayerMovement : MonoBehaviour
             transform.forward = lookDirection;
         }
 
-        playerCC.Move(speed * Time.deltaTime * new Vector3(lookDirection.x, moveDirectionY, lookDirection.z));
+        //Debug.Log(speed * new Vector3(lookDirection.x, moveDirectionY, lookDirection.z));
+
+        playerRB.velocity = speed * new Vector3(lookDirection.x, moveDirectionY, lookDirection.z);
     }
 
     private void Jump()
     {
-        if (playerCC.isGrounded)
+        if (IsGrounded && !isJumping)
         {
             jumpPower = defaultJumpPower;
             isJumping = true;
@@ -81,10 +100,15 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump(float jumpPower)
     {
-        if (playerCC.isGrounded)
+        if (IsGrounded)
         {
             this.jumpPower = jumpPower;
             isJumping = true;
         }
+    }
+
+    public bool CheckGround()
+    {
+        return !Physics.SphereCast(transform.position, 0.1f, Vector3.down, out var hit);
     }
 }

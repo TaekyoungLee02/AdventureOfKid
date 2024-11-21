@@ -20,12 +20,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        OnMove?.Invoke(inputManager.PlayerMove);
 
         if (inputManager.IsJumping)
         {
             OnJump?.Invoke();
         }
+
+        OnMove?.Invoke(inputManager.PlayerMove);
+
     }
 
     private void LateUpdate()
