@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
+    private float defaultJumpPower;
     private float jumpPower;
     private bool isJumping;
     private float moveDirectionY;
@@ -39,12 +40,14 @@ public class PlayerMovement : MonoBehaviour
     {
         playerController.OnMove += Move;
         playerController.OnJump += Jump;
+        playerController.OnStructureJump += Jump;
     }
 
     private void DeleteMovementEvent()
     {
         playerController.OnMove -= Move;
         playerController.OnJump -= Jump;
+        playerController.OnStructureJump += Jump;
     }
 
     private void Move(Vector2 moveDirection)
@@ -72,6 +75,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerCC.isGrounded)
         {
+            jumpPower = defaultJumpPower;
+            isJumping = true;
+        }
+    }
+    public void Jump(float jumpPower)
+    {
+        if (playerCC.isGrounded)
+        {
+            this.jumpPower = jumpPower;
             isJumping = true;
         }
     }

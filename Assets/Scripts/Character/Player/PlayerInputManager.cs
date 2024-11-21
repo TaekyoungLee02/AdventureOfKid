@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,20 +12,26 @@ public class PlayerInputManager : MonoBehaviour
     private PlayerInput playerInput;
     private VirtualJoystick joystick;
     private JumpControlUI jumpUI;
+    private CustomizeButtonUI customizeButtonUI;
     private Vector2 playerAxis;
     private Vector2 playerMove;
     private bool isJumping;
+
 
     public PlayerInput PlayerInput { get { return playerInput; } }
     public Vector2 PlayerAxis { get { return playerAxis; } }
     public Vector2 PlayerMove { get { return playerMove; } }
     public bool IsJumping { get { return isJumping; } }
+    public event Action OnCustomizeOpen;
 
     private void Awake()
     {
         playerInput = new PlayerInput();
         joystick = FindObjectOfType<VirtualJoystick>();
         jumpUI = FindObjectOfType<JumpControlUI>();
+        customizeButtonUI = FindObjectOfType<CustomizeButtonUI>();
+
+        OnCustomizeOpen += () => Debug.Log("Pressed");
     }
 
     private void OnEnable()
@@ -50,6 +57,7 @@ public class PlayerInputManager : MonoBehaviour
 
             joystick.OnTouchscreenMove += TouchScreenMove;
             jumpUI.OnTouchscreenJump += TouchScreenJump;
+            customizeButtonUI.OnCustomizeOpen += TouchScreenCustomizeButton;
 
 #else
 
@@ -61,6 +69,8 @@ public class PlayerInputManager : MonoBehaviour
 
             playerInput.Player.Jump.started += Jump;
             playerInput.Player.Jump.canceled += Jump;
+
+            playerInput.Player.Customize.started += CustomizeOpen;
 
 #endif
     }
@@ -137,6 +147,11 @@ public class PlayerInputManager : MonoBehaviour
         isJumping = isPushed;
     }
 
+    private void TouchScreenCustomizeButton()
+    {
+        OnCustomizeOpen?.Invoke();
+    }
+
 #else
 
     private void Move(InputAction.CallbackContext context)
@@ -154,6 +169,11 @@ public class PlayerInputManager : MonoBehaviour
         {
             isJumping = false;
         }
+    }
+
+    private void CustomizeOpen(InputAction.CallbackContext context)
+    {
+        OnCustomizeOpen?.Invoke();
     }
 
 #endif
