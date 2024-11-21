@@ -1506,6 +1506,7 @@ GameObject:
   - component: {fileID: 7968312029979772864}
   - component: {fileID: 3484830927275166940}
   - component: {fileID: 8102007535290529143}
+  - component: {fileID: 5425638988673383127}
   m_Layer: 0
   m_Name: Spikes_Small
   m_TagString: Untagged
@@ -1674,6 +1675,19 @@ MonoBehaviour:
   MoveDistance: -1
   initialPosition: {x: 0, y: 0, z: 0}
   disablePosition: {x: 0, y: 0, z: 0}
+--- !u!114 &5425638988673383127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602281435894652028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c42b289644463b4e9e31772169c369a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 40040002
 --- !u!1 &1659118382616182805
 GameObject:
   m_ObjectHideFlags: 0

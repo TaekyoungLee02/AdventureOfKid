@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using Newtonsoft.Json;
 using DG.Tweening.Plugins.Core.PathCore;
+using UnityEditor.Experimental.GraphView;
 
 public class DataManager : SingletonBase<DataManager>
 {
@@ -60,7 +61,9 @@ public class DataManager : SingletonBase<DataManager>
         {
             StageObject obj = objects[i].Serialize();
 
-            data.structures.Add(obj);
+            if (objects[i].ID / 1000000 == 50) data.items.Add(obj);
+            else data.structures.Add(obj);
+
         }
 
         stageData.Add(data);
