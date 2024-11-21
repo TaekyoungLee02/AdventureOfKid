@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,17 +21,6 @@ public class UIShop : MonoBehaviour
     [SerializeField] private GameObject[] itemImageFrame;
 
     private List<Sprite[]> sprites = new List<Sprite[]>();
-    private Sprite[] hairSprite;
-    private Sprite[] faceSprite;
-    private Sprite[] headGearSprite;
-    private Sprite[] topSprite;
-    private Sprite[] bottomSprite;
-    private Sprite[] eyeWearSprite;
-    private Sprite[] bagSprite;
-    private Sprite[] shoesSprite;
-    private Sprite[] gloveSprite;
-
-    private List<Sprite> allSprite = new();
 
     Image[] itemImage;
     Text[] itemGoldText;
@@ -43,27 +33,28 @@ public class UIShop : MonoBehaviour
 
     void LoadAllSprite()
     {
-        //hairSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair");
-        //faceSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face");
-        headGearSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/HeadGear");
-        topSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Top");
-        bottomSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/EyeWear");
-        eyeWearSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Bag");
-        bagSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Bag");
-        shoesSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Shoes");
-        gloveSprite = Resources.LoadAll<Sprite>("Sprites/CustomIcon/Glove");
+        AddAndSortSprites("Sprites/CustomIcon/Hair");
+        AddAndSortSprites("Sprites/CustomIcon/Face");
+        AddAndSortSprites("Sprites/CustomIcon/HeadGear");
+        AddAndSortSprites("Sprites/CustomIcon/Top");
+        AddAndSortSprites("Sprites/CustomIcon/Bottom");
+        AddAndSortSprites("Sprites/CustomIcon/EyeWear");
+        AddAndSortSprites("Sprites/CustomIcon/Bag");
+        AddAndSortSprites("Sprites/CustomIcon/Shoes");
+        AddAndSortSprites("Sprites/CustomIcon/Glove");
+    }
 
-        sprites.Add(Resources.LoadAll<Sprite>("Sprites/CustomIcon/Hair"));
-        sprites.Add(Resources.LoadAll<Sprite>("Sprites/CustomIcon/Face"));
-        sprites.Add(headGearSprite);
-        sprites.Add(topSprite);
-        sprites.Add(bottomSprite);
-        sprites.Add(eyeWearSprite);
-        sprites.Add(bagSprite);
-        sprites.Add(shoesSprite);
-        sprites.Add(gloveSprite);
+    void AddAndSortSprites(string path)
+    {
+        Sprite[] loadedSprites = Resources.LoadAll<Sprite>(path);
+        Array.Sort(loadedSprites, (a, b) => ExtractNumber(a.name).CompareTo(ExtractNumber(b.name)));
+        sprites.Add(loadedSprites);
+    }
 
-        //allSprite.Add(hairSprite, faceSprite, headGearSprite, topSprite, bottomSprite, eyeWearSprite, bagSprite, shoesSprite, gloveSprite);
+    private int ExtractNumber(string name)
+    {
+        string numberPart = System.Text.RegularExpressions.Regex.Match(name, @"\d+").Value;
+        return string.IsNullOrEmpty(numberPart) ? 0 : int.Parse(numberPart);
     }
 
     public void ExitButton()
@@ -94,7 +85,12 @@ public class UIShop : MonoBehaviour
 
     void ResetAllImage()
     {
-        
+        for (int i = 0; i < itemImage.Length; i++)
+        {
+            itemImageFrame[i].gameObject.SetActive(false);
+            itemImage[i].GetComponent<Image>().sprite = null;
+            itemImageFrame[i].GetComponent<Button>().onClick.RemoveAllListeners();
+        }
     }
 
     public void CategoryButton(int index)
