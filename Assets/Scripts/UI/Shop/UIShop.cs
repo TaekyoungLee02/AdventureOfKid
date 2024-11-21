@@ -110,11 +110,15 @@ public class UIShop : MonoBehaviour
 
     void BuyButton(int index)
     {
-        foreach (var parts in playerParts)
+        if (UIManager.Instance.GetCoin() >= int.Parse(itemGoldText[index].text))
         {
-            if(itemImage[index].name == parts.transform.GetChild(index).name)
+            foreach (var parts in playerParts)
             {
-                parts.transform.GetChild(index).GetComponent<Image>().sprite = itemImage[index].sprite;
+                if (itemImage[index].name == parts.transform.GetChild(index).name)
+                {
+                    parts.transform.GetChild(index).GetComponent<Image>().sprite = itemImage[index].sprite;
+                    UIManager.Instance.SubstractCoin(int.Parse(itemGoldText[index].text));
+                }
             }
         }
     }
