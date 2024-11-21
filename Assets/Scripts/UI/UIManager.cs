@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     private bool isPause;
 
     public Action<int> AddCoinAction;
+    public Action<int> SubstractCoinAction;
     public Func<int> GetCoinFunc;
 
     public static UIManager Instance
@@ -68,6 +69,11 @@ public class UIManager : MonoBehaviour
     public void AddCoin(int amount)
     {
         AddCoinAction?.Invoke(amount);
+    }
+
+    public void SubstractCoin(int amount)
+    {
+        SubstractCoinAction?.Invoke(amount);
     }
 
     public int GetCoin()
