@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!IsGrounded)
         {
-            jumpVector.y += (Physics.gravity.y * Time.fixedDeltaTime);
+            jumpVector.y += (Physics.gravity.y * ((float)3/4) * Time.fixedDeltaTime);
         }
 
         Vector3 lookDirection = moveDirection;
