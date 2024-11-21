@@ -36,4 +36,9 @@ public class PlayerController : MonoBehaviour
     {
         OnLook?.Invoke();
     }
+
+    public void MakePlayerJump(float jumpforce)
+    {
+
+    }
 }
