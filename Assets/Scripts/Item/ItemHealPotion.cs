@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHealPotion : Item, IUseable
+public class ItemHealPotion : Item, IUseable, IDataInitializer
 {
     private int value;
 
@@ -14,5 +14,10 @@ public class ItemHealPotion : Item, IUseable
     public void Init(ItemData data)
     {
         value = data.value;
+    }
+
+    public void Initialize(List<int> values)
+    {
+        value = values[0];
     }
 }

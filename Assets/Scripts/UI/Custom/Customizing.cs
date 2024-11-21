@@ -15,7 +15,14 @@ public class Customizing : MonoBehaviour
     [SerializeField] private GameObject customImages;
     [SerializeField] private Text[] numberText;
 
+    private Dictionary<string, int> customData = new();
+
     GameObject[] imageObject;
+
+    public Dictionary<string, int> CustomData
+    {
+        get { return customData; }
+    }
 
     void Start()
     {
@@ -106,11 +113,17 @@ public class Customizing : MonoBehaviour
 
             if (currentCategoryName == part.name)
             {
+                
                 for (int i = 0; i < part.transform.childCount; i++)
                 {
                     if (part.transform.GetChild(i).name == clickButton.name)
                     {
                         part.transform.GetChild(i).gameObject.SetActive(true);
+                        if (customData.ContainsKey(part.name))
+                        {
+                            customData.Remove(part.name);
+                        }
+                        customData.Add(part.name, i);
                     }
                     else
                     {
