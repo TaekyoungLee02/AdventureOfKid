@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class JumpPlatform : MonoBehaviour
 {
-    public float JumpForce = 10f;
+    public Vector3 JumpForce = Vector3.up * 10f;
+
 
     private void OnTriggerEnter(Collider other)
     {
