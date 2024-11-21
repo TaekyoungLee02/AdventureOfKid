@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
 
         stateMachine = new EnemyStateMachine(this);
 
+        GetComponent<EnemyCondition>().StateMachine = stateMachine;
+
         // Temp
         SoundManager.Instance.Play("bgm", Sound.Bgm, 0.5f);
     }

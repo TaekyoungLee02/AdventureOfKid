@@ -12,6 +12,8 @@ public class EnemyCondition : MonoBehaviour, IDamageable
 {
     [SerializeField] private int hp = 1;
 
+    public EnemyStateMachine StateMachine { get; set; }
+
     public bool _isDie;
 
     void Update()
@@ -27,7 +29,10 @@ public class EnemyCondition : MonoBehaviour, IDamageable
     {
         hp -= damage;
 
-        // TODO : Damage State ¡¯¿‘
+        EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
+        EffectManager.Instance.SettingColor(0f, 1f, 0f);
+
+        StateMachine.ChangeState(StateMachine.DamageState);
 
         if (hp < 0)
             hp = 0;
@@ -61,5 +66,6 @@ public class EnemyCondition : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.5f);
 
         Destroy(gameObject);
+        UIManager.Instance.AddCoin(10);
     }
 }
