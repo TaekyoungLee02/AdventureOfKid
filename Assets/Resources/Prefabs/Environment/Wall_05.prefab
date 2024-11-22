@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 5632633492969110357}
   - component: {fileID: 556758401404267688}
   - component: {fileID: -7369705101429798590}
+  - component: {fileID: -5614386911316842905}
   m_Layer: 6
   m_Name: Wall_05
   m_TagString: Untagged
@@ -238,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7463247987151641277}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.391066, y: 4.867, z: 1.2911339}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -331,3 +332,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40010035
+--- !u!208 &-5614386911316842905
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463247987151641277}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.776, y: 1.1, z: 0.172}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.1, z: 0}
+  m_TimeToStationary: 0.5

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 436196127257556102}
   - component: {fileID: 4710367047006950000}
   - component: {fileID: -937575358358357124}
+  - component: {fileID: -2265359671783288005}
   m_Layer: 6
   m_Name: Bush_3
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2823965713208419817}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21.381866, y: 4.8172064, z: -15.509321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -121,3 +122,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40010006
+--- !u!208 &-2265359671783288005
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823965713208419817}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.882, y: 1.241, z: 0.80700004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.136, y: 1.192, z: -0.046000004}
+  m_TimeToStationary: 0.5

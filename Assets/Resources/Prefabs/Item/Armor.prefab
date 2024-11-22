@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 698552184290714320}
   - component: {fileID: 4407307824065433435}
   - component: {fileID: 3912134984334003518}
+  - component: {fileID: 4985807250069631542}
   m_Layer: 0
   m_Name: Armor
   m_TagString: Untagged
@@ -133,3 +134,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 50020001
+--- !u!114 &4985807250069631542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885308567703381741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc791fd9d4e8b349adffc913f65f1dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: c89de046b9323654fb91dc08251abd48, type: 2}

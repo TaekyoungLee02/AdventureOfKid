@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f1aa4adadcf5d4eb0a3a0d60854acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1
+  hp: 3
   _isDie: 0
 --- !u!1 &4618568701688747084
 GameObject:
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 176395225695190492}
   m_Layer: 0
   m_Name: HeadCollider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

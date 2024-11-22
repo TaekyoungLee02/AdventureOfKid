@@ -43,10 +43,14 @@ public class EnemyBaseState : IState
 
     public virtual void Update()
     {
-        //if(!stateMachine.Enemy.Condition._isDie)
-        // TODO :  공격 중 일때와, 살아있을 때만 쳐다봄
-        if (stateMachine.CurrentState == stateMachine.ChasingState
-            || stateMachine.CurrentState == stateMachine.AttackState)
+        if (stateMachine.Enemy.Condition.isDie)
+        {
+            stateMachine.Enemy.NavMeshAgent.isStopped = true;
+            return;
+        }
+        
+        if ((stateMachine.CurrentState == stateMachine.ChasingState
+            || stateMachine.CurrentState == stateMachine.AttackState))
         {
             if (stateMachine.Enemy.NavMeshAgent.velocity.sqrMagnitude > 0.1f)
                 LookAtNavPath();

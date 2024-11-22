@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public CharacterController Controller { get; private set; }
     //public ForceReceiver ForceReceiver { get; private set; }
 
-    //public EnemyCondition Condition { get; private set; }
+    public EnemyCondition Condition { get; private set; }
 
     public NavMeshAgent NavMeshAgent { get; private set; }
 
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         Controller = GetComponent<CharacterController>();
         //ForceReceiver = GetComponent<ForceReceiver>();
-        //Condition = GetComponent<EnemyCondition>();
+        Condition = GetComponent<EnemyCondition>();
 
         NavMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -45,15 +45,13 @@ public class Enemy : MonoBehaviour
         stateMachine = new EnemyStateMachine(this);
 
         GetComponent<EnemyCondition>().StateMachine = stateMachine;
-
-        // Temp
-        SoundManager.Instance.Play("bgm", Sound.Bgm, 0.5f);
     }
 
     void Start()
     {
         stateMachine.ChangeState(stateMachine.IdleState);
-        //RemoveTarget += CharacterManager.Instance.Player.RemoveTarget;
+
+        SoundManager.Instance.Play("bgm", Sound.Bgm, 0.5f);
     }
 
     private void Update()

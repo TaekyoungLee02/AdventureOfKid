@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7947449499242114739}
   - component: {fileID: 5691963140511702384}
   - component: {fileID: 7450339619318532982}
+  - component: {fileID: 4310470978430170113}
   m_Layer: 0
   m_Name: SpeedUpPotion
   m_TagString: Untagged
@@ -132,3 +133,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 50010002
+--- !u!114 &4310470978430170113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060681244837212251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc791fd9d4e8b349adffc913f65f1dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 0f4df9874f6ead146a60291e326f7df1, type: 2}

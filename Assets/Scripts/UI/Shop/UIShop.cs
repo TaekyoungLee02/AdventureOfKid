@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +35,31 @@ public class UIShop : MonoBehaviour
         LoadAllSprite();
         ItemAllSetting();
         gameObject.SetActive(false);
+
+        var parts = FindObjectOfType<PlayerCustomizeApplier>().gameObject;
+
+        for (int i = 0; i < parts.transform.childCount; ++i)
+            playerParts[i] = parts.transform.GetChild(i).gameObject;
+
+        for (int i = 0; i < playerParts.Length; i++)
+        {
+            int spriteCount = CountSpritesInCategory(i);
+        }
+    }
+
+    int CountSpritesInCategory(int index)
+    {
+        int count = 0;
+        for (int i = 0; i < playerParts[index].transform.childCount; i++)
+        {
+            playerParts[index].transform.GetChild(i).AddComponent<Image>();
+
+            if (playerParts[index].transform.GetChild(i).GetComponent<Image>().sprite != null)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     void LoadAllSprite()

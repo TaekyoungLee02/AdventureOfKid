@@ -12,8 +12,13 @@ public class UIManager : MonoBehaviour
 
     public Action<int> AddCoinAction;
     public Action<int> SubstractCoinAction;
-    public Action UpdateCustomInfoAction;
     public Func<int> GetCoinFunc;
+
+    public Action<int> ChangeHpAction;
+    public Action<int> ChangeMaxHpAction;
+    public Func<int> GetHpAction;
+
+    public Action UpdateCustomInfoAction;
 
     public static UIManager Instance
     {
@@ -85,5 +90,20 @@ public class UIManager : MonoBehaviour
     public void UpdateCustomInfo()
     {
         UpdateCustomInfoAction?.Invoke();
+    }
+
+    public void ChangeHp(int value)
+    {
+        ChangeHpAction?.Invoke(value);
+    }
+
+    public void ChangeMaxHp(int value)
+    {
+        ChangeMaxHpAction?.Invoke(value);
+    }
+
+    public int GetHp()
+    {
+        return (int)GetHpAction?.Invoke();
     }
 }

@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float lastUpdateFrame;
 
+    public float Speed { set { speed += value; } }
+
     public bool IsGrounded
     {
         get
