@@ -13,6 +13,7 @@ public class SavePlayerCustomizeData : MonoBehaviour
         PlayerData data = new();
 
         data.customizeData = customizeData;
+        data.path = Paths.ObjectPathPlayer;
 
         playerData.Add(data);
 
