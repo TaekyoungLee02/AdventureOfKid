@@ -39,6 +39,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakePhysicalDamage(int damage)
     {
-        ChangeHealth(-1);
+        UIManager.Instance.ChangeHp(-1);
     }
 }

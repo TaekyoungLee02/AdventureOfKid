@@ -216,6 +216,7 @@ public class UIInventory : MonoBehaviour
                     break;
             }
 
+            SoundManager.Instance.Play("heal", Sound.Sfx, 0.5f);
             RemoveSelectedItem();
         }
     }

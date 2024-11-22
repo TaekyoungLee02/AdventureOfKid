@@ -31,6 +31,7 @@ public class EnemyBaseState : IState
 
     public virtual void Exit()
     {
+        if (stateMachine.Enemy.Condition.isDie) return;
     }
 
     public virtual void HandleInput()

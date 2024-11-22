@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakePhysicalDamage(damage);
-            EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
+            EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "damage");
         }
     }
 

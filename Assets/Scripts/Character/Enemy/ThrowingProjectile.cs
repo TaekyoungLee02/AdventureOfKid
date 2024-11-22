@@ -37,7 +37,7 @@ public class ThrowingProjectile : MonoBehaviour
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakePhysicalDamage(1);
-            EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
+            EffectManager.Instance.PlayEffect("Hit", 1f, transform.position, Quaternion.identity, "damage");
         }
     }
 }
