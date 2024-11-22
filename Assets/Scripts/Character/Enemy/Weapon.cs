@@ -7,8 +7,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private Collider myCollider;
 
-    private int damage;
-    private float knockback;
+    private int damage = 1;
 
     private List<Collider> alreadyCollider = new List<Collider>();
 
@@ -26,6 +25,7 @@ public class Weapon : MonoBehaviour
         if(enemyObj.TryGetComponent(out Enemy enemy) && enemy.CanThrow)
         {
             var go = Resources.Load<GameObject>("Prefabs/Thorn Projectile");
+            go.GetComponent<ThrowingProjectile>().MyCollider = myCollider;
             Vector3 dir = enemyObj.transform.forward;
             Instantiate(go, transform.position, Quaternion.LookRotation(dir));
         }
@@ -41,18 +41,12 @@ public class Weapon : MonoBehaviour
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakePhysicalDamage(damage);
+            EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
         }
-
-        //if (other.TryGetComponent(out ForceReceiver force))
-        //{
-        //    Vector3 dir = (other.transform.position - _myCollider.transform.position);
-        //    force.AddForce(dir * _knockback);
-        //}
     }
 
-    public void SetAttack(int damage, float knockback)
+    public void SetAttack(int damage)
     {
         this.damage = damage;
-        this.knockback = knockback;
     }
 }

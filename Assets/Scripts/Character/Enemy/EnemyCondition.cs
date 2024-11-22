@@ -14,14 +14,14 @@ public class EnemyCondition : MonoBehaviour, IDamageable
 
     public EnemyStateMachine StateMachine { get; set; }
 
-    public bool _isDie;
+    public bool isDie;
 
     void Update()
     {
-        if (hp == 0 && !_isDie)
+        if (hp == 0 && !isDie)
         {
             Die();
-            _isDie = true;
+            isDie = true;
         }
     }
 
@@ -30,12 +30,15 @@ public class EnemyCondition : MonoBehaviour, IDamageable
         hp -= damage;
 
         EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
-        EffectManager.Instance.SettingColor(0f, 1f, 0f);
+        //EffectManager.Instance.SettingColor(0f, 1f, 0f);
+
+        if (hp <= 0)
+        {
+            hp = 0;
+            return;
+        }
 
         StateMachine.ChangeState(StateMachine.DamageState);
-
-        if (hp < 0)
-            hp = 0;
     }
 
     public void Die()
@@ -44,7 +47,7 @@ public class EnemyCondition : MonoBehaviour, IDamageable
 
         enemy.Animator.SetTrigger("Die");
 
-        enemy.RemoveTarget?.Invoke();
+        StateMachine.RemoveTarget();
 
         GetComponent<CharacterController>().enabled = false;
 
@@ -66,6 +69,6 @@ public class EnemyCondition : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.5f);
 
         Destroy(gameObject);
-        UIManager.Instance.AddCoin(10);
+        UIManager.Instance.AddCoin(500);
     }
 }

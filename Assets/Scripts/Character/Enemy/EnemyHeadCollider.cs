@@ -14,7 +14,7 @@ public class EnemyHeadCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Foot"))
         {
             condition.TakePhysicalDamage(1);
         }

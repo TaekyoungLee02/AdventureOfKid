@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 87593178011188205}
   - component: {fileID: 2797798329751850791}
   - component: {fileID: 8652197285527515208}
+  - component: {fileID: 6764516234397308817}
   m_Layer: 0
   m_Name: Thorn Projectile
   m_TagString: Untagged
@@ -96,3 +97,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee5dce040be1834eae924e5daada9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+--- !u!65 &6764516234397308817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4454968991917928178}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16234955, y: 0.1987594, z: 0.39593613}
+  m_Center: {x: -0.0041059107, y: -0.0143174715, z: 0.023479491}

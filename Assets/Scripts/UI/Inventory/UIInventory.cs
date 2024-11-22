@@ -27,11 +27,8 @@ public class UIInventory : MonoBehaviour
     private ItemData selectedItem;
     private int selectedItemIdx;
 
+    bool isAction;
     int curEquipIdx;
-
-    public ItemData tempItem;
-    public ItemData tempItem2;
-    public ItemData tempItem3;
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +38,8 @@ public class UIInventory : MonoBehaviour
         //_dropPosition = CharacterManager.Instance.Player._dropPosition;
 
         //_controller.Inventory += Toggle;
-        //CharacterManager.Instance.Player.AddItem += AddItem;
-
-        inventoryWindow.SetActive(false);
+        
+        //inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
 
         for(int i = 0; i < slots.Length; ++i)
@@ -55,6 +51,16 @@ public class UIInventory : MonoBehaviour
 
         ClearSelectedItemWindow();
         UpdateUI();
+    }
+
+    private void Update()
+    {
+        if (!isAction && CharacterManager.Instance.Player != null)
+        {
+            CharacterManager.Instance.Player.AddItem += AddItem;
+            isAction = true;
+            inventoryWindow.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -191,14 +197,21 @@ public class UIInventory : MonoBehaviour
             switch (selectedItem.itemType)
             {
                 case ItemType.MoveSpeedUp:
-                    //_condition.Heal(selectedItem._consumables[i]._value);
+                    {
+                        CharacterManager.Instance.Player.PlayerMovement.Speed = selectedItem.value;
+                    }
                     break;
                 case ItemType.Heal:
-                    //_condition.Eat(selectedItem._consumables[i]._value);
                     {
-                        // Temp
-                        var hp = Resources.Load<GameObject>("Prefabs/Hp");
-                        Instantiate(hp, hpGroup.transform);
+                        int prevHp = CharacterManager.Instance.Player.Health.GetHealth();
+                        CharacterManager.Instance.Player.Health.ChangeHealth(1);
+                        int curHp = CharacterManager.Instance.Player.Health.GetHealth();
+
+                        if (prevHp < curHp)
+                        {
+                            var hp = Resources.Load<GameObject>("Prefabs/Hp");
+                            Instantiate(hp, hpGroup.transform);
+                        }
                     }
                     break;
             }
@@ -237,10 +250,11 @@ public class UIInventory : MonoBehaviour
 
         slots[selectedItemIdx].equipped = true;
         curEquipIdx = selectedItemIdx;
-        //CharacterManager.Instance.Player.Equipment.EquipNew(selectedItem);
+        CharacterManager.Instance.Player.Equipment.EquipNew(selectedItem);
 
         var hp = Resources.Load<GameObject>("Prefabs/Hp");
         Instantiate(hp, hpGroup.transform);
+        CharacterManager.Instance.Player.Health.ChangeMaxHealth(1);
 
         UpdateUI();
 
@@ -255,9 +269,10 @@ public class UIInventory : MonoBehaviour
     private void UnEquip(int index)
     {
         slots[index].equipped = false;
-        //CharacterManager.Instance.Player.Equipment.UnEquip();
+        CharacterManager.Instance.Player.Equipment.UnEquip();
 
         Destroy(hpGroup.transform.GetChild(0).gameObject);
+        CharacterManager.Instance.Player.Health.ChangeMaxHealth(-1);
 
         UpdateUI();
 
@@ -267,17 +282,10 @@ public class UIInventory : MonoBehaviour
         }
     }
 
-    public void TempAddItem()
-    {
-        if (tempItem == null) return;
+    //public void TempAddItem()
+    //{
+    //    if (tempItem == null) return;
 
-        //CharacterManager.Instance.Player.AddItem?.Invoke(tempItem);
-    }
-
-    public void TempAddItem2()
-    {
-        if (tempItem == null) return;
-
-        //CharacterManager.Instance.Player.AddItem?.Invoke(tempItem2);
-    }
+    //    CharacterManager.Instance.Player.AddItem?.Invoke(tempItem);
+    //}
 }

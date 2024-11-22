@@ -1856,6 +1856,7 @@ GameObject:
   - component: {fileID: 8201344687337229301}
   - component: {fileID: 3903209858624306183}
   - component: {fileID: -8977326154518088771}
+  - component: {fileID: 7964180981268802409}
   m_Layer: 6
   m_Name: WoodLand_Gate_01
   m_TagString: Untagged
@@ -1871,7 +1872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8063426789385245454}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.23484811, z: -0, w: 0.9720321}
+  m_LocalRotation: {x: 0, y: 0.23484527, z: 0, w: 0.97203285}
   m_LocalPosition: {x: 30.208136, y: 5.0012064, z: -31.11932}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1937,6 +1938,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40010036
+--- !u!208 &7964180981268802409
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063426789385245454}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8940277897148361971
 GameObject:
   m_ObjectHideFlags: 0

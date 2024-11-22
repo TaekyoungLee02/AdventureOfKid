@@ -462,6 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628548945243961114}
   - component: {fileID: -9054080543579115870}
+  - component: {fileID: 5025178936296044421}
   m_Layer: 6
   m_Name: Tree_3
   m_TagString: Untagged
@@ -477,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6105971739695223635}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.22703983, z: -0, w: 0.9738855}
+  m_LocalRotation: {x: 0, y: 0.22704221, z: 0, w: 0.973885}
   m_LocalPosition: {x: -21.801867, y: 4.4412065, z: -4.9493217}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -499,6 +500,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40010033
+--- !u!208 &5025178936296044421
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105971739695223635}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7717153418619646483
 GameObject:
   m_ObjectHideFlags: 0

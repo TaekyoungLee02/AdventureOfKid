@@ -32,4 +32,9 @@ public class EnemyStateMachine : StateMachine
         MovementSpeed = enemy.Data.GroundData.BaseSpeed;
         RotationDamping = enemy.Data.GroundData.BaseRotationDamping;
     }
+
+    public void RemoveTarget()
+    {
+        Target = null;
+    }
 }

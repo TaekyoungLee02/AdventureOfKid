@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4325166077740435023}
   - component: {fileID: 8336593586578357915}
   - component: {fileID: 8968597010216738630}
+  - component: {fileID: 3172876429328704880}
   m_Layer: 6
   m_Name: CrossPlains_Monuntain_Desert_01
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4816624516327700041}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.23044382, z: -0, w: 0.97308564}
+  m_LocalRotation: {x: 0, y: -0.23044044, z: 0, w: 0.9730865}
   m_LocalPosition: {x: -35.651863, y: 4.3712068, z: -40.649323}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -120,3 +121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40010013
+--- !u!208 &3172876429328704880
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816624516327700041}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.827, y: 3.9400003, z: 4.0270004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.165, y: 3.798, z: -1.4180001}
+  m_TimeToStationary: 0.5
