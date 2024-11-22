@@ -50,8 +50,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         stateMachine.ChangeState(stateMachine.IdleState);
-
-        SoundManager.Instance.Play("bgm", Sound.Bgm, 0.5f);
     }
 
     private void Update()

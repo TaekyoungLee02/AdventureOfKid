@@ -13,6 +13,7 @@ public class JumpPlatform : MonoBehaviour
         if (pc != null)
         {
             pc.MakePlayerJump(JumpForce);
+            SoundManager.Instance.Play("jump", Sound.Sfx);
         }
     }
 }

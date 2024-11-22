@@ -25,6 +25,11 @@ public class Spike : MonoBehaviour, IDataInitializer
 
         if (angle < DamageAngle)
         {
+            if(other.CompareTag("Player") && other.gameObject.TryGetComponent(out IDamageable damage))
+            {
+                damage.TakePhysicalDamage(1);
+                EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "damage");
+            }
             Debug.Log("¾Æ¾ß!?");
         }
         else

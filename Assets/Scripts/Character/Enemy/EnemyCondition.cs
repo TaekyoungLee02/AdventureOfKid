@@ -29,8 +29,7 @@ public class EnemyCondition : MonoBehaviour, IDamageable
     {
         hp -= damage;
 
-        EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "coin");
-        //EffectManager.Instance.SettingColor(0f, 1f, 0f);
+        EffectManager.Instance.PlayEffect("Hit", 1f, transform.position + Vector3.up, Quaternion.identity, "collision");
 
         if (hp <= 0)
         {
