@@ -1,1 +1,19 @@
-[{"customizeData":{"Hair":1,"Bag":1,"Top":7},"id":0,"name":null,"description":null,"path":"Prefabs/Player/Player"}]
+[
+  {
+    "customizeData": {
+      "Hair": 5,
+      "Face": 2,
+      "Headgear": 1,
+      "Top": 1,
+      "Bottom": 1,
+      "Eyewear": 1,
+      "Bag": 1,
+      "Glove": 0,
+      "Shoes": 8
+    },
+    "id": 0,
+    "name": null,
+    "description": null,
+    "path": "Prefabs/Player/Player"
+  }
+]
