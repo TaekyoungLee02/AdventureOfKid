@@ -21,7 +21,7 @@ public class SavePlayerCustomizeData : MonoBehaviour
 
         print(json);
 
-        File.WriteAllText(Application.dataPath + Paths.JsonPathPlayer, json);
+        File.WriteAllText(Application.streamingAssetsPath + Paths.JsonPathPlayer, json);
 
     }
 }

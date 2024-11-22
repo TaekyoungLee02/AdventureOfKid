@@ -3,8 +3,6 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using Newtonsoft.Json;
-using DG.Tweening.Plugins.Core.PathCore;
-using UnityEditor.Experimental.GraphView;
 
 public class DataManager : SingletonBase<DataManager>
 {
@@ -77,7 +75,7 @@ public class DataManager : SingletonBase<DataManager>
 
         print(json);
 
-        File.WriteAllText(Application.dataPath + Paths.JsonPathStageData, json);
+        File.WriteAllText(Application.streamingAssetsPath + Paths.JsonPathStageData, json);
 
     }
 
@@ -100,7 +98,7 @@ public class DataManager : SingletonBase<DataManager>
         }
 
         StringBuilder sb = new();
-        sb.Append(Application.dataPath);
+        sb.Append(Application.streamingAssetsPath);
         sb.Append(path);
 
         path = sb.ToString();
