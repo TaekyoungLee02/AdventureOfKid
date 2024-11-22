@@ -31006,7 +31006,7 @@ MonoBehaviour:
   defaultJumpPower: 3
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
 --- !u!114 &1206103737512584856
 MonoBehaviour:
   m_ObjectHideFlags: 0

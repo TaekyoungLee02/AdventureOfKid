@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class JumpPlatform : MonoBehaviour
 {
-    public Vector3 JumpForce = Vector3.up * 10f;
+    public Vector3 JumpForce;
+
+    private void Start()
+    {
+        JumpForce = transform.up * 5f;
+    }
 
 
     private void OnTriggerEnter(Collider other)

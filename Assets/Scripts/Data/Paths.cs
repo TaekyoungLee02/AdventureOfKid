@@ -11,4 +11,5 @@ public class Paths
     public const string JsonPathEnemy = "/Resources/JSON/EnemyData.json";
     public const string DataPathStructure = "/Resources/Structure/";
     public const string DataPathPlayer = "/Resources/PlayerData/";
+    public const string ObjectPathPlayer = "Prefabs/Player/Player";
 }
