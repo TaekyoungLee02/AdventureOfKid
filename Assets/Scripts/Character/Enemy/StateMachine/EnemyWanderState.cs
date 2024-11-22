@@ -11,8 +11,8 @@ public class EnemyWanderState : EnemyBaseState
 
     public override void Enter()
     {
-        stateMachine.Enemy.NavMeshAgent.isStopped = false;
         base.Enter();
+        stateMachine.Enemy.NavMeshAgent.isStopped = false;
         StartAnimation(stateMachine.Enemy.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Enemy.AnimationData.WanderParameterHash);
     }
