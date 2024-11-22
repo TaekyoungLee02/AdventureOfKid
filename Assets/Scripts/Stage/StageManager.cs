@@ -9,6 +9,7 @@ public class StageManager : MonoBehaviour
     private StructureLoader structureLoader;
     private ItemLoader itemLoader;
     private PlayerLoader playerLoader;
+    private EnemyLoader enemyLoader;
 
     private List<NavMeshSurface> navMeshSurfaces = new();
 
@@ -18,12 +19,9 @@ public class StageManager : MonoBehaviour
         structureLoader = new();
         itemLoader = new();
         playerLoader = new();
+        enemyLoader = new();
 
         SpawnFromData(1);
-
-        //InitMapBake();
-
-        InitEnemy();
     }
 
     public void SpawnFromData(int id)
@@ -34,6 +32,7 @@ public class StageManager : MonoBehaviour
         SpawnObject(data.structures, structureLoader);
         SpawnObject(data.items, itemLoader);
         SpawnPlayer(data.playerVector);
+        SpawnObject(data.enemies, enemyLoader);
     }
 
     private void SpawnObject<T>(List<StageObject> objects, DataLoader<T> dataLoader) where T : DataTypeBase
@@ -74,21 +73,5 @@ public class StageManager : MonoBehaviour
         var player = Instantiate(playerLoader.GetData(0) as GameObject);
         player.transform.SetPositionAndRotation(playerVector.position.ToVector3(), Quaternion.Euler(playerVector.rotation.ToVector3()));
         player.transform.localScale = playerVector.scale.ToVector3();
-    }
-
-    private void InitMapBake()
-    {
-        foreach (NavMeshSurface surface in navMeshSurfaces)
-        {
-            //surface.tileSize = 2048;
-            //surface.voxelSize = 0.2f;
-            surface.BuildNavMesh();
-        }
-    }
-
-    private void InitEnemy()
-    {
-        var enemy = Resources.Load<GameObject>("Prefabs/Enemy/Enemy_Burrow");
-        Instantiate(enemy);
     }
 }

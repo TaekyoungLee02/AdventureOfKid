@@ -12,11 +12,13 @@ public class DataManager : SingletonBase<DataManager>
     private DataBase<ItemDataBase> _itemData = new();
     private DataBase<StructureData> _structureData = new();
     private DataBase<PlayerData> _playerData = new();
+    private DataBase<EnemyData> _enemyData = new();
 
     public DataBase<StageData> StageData { get { return _stageData; } }
     public DataBase<ItemDataBase> ItemData { get { return _itemData; } }
     public DataBase<StructureData> StructureData { get { return _structureData; } }
     public DataBase<PlayerData> PlayerData { get { return _playerData; } }
+    public DataBase<EnemyData> EnemyData { get { return _enemyData; } }
 
     public enum DataType
     {
@@ -24,6 +26,7 @@ public class DataManager : SingletonBase<DataManager>
         ItemData,
         StructureData,
         PlayerData,
+        EnemyData,
     }
 
     private new void Awake()
@@ -34,6 +37,7 @@ public class DataManager : SingletonBase<DataManager>
         _stageData = LoadData<StageData>(DataType.StageData);
         _structureData = LoadData<StructureData>(DataType.StructureData);
         _playerData = LoadData<PlayerData>(DataType.PlayerData);
+        _enemyData = LoadData<EnemyData>(DataType.EnemyData);
     }
 
     private void Start()
@@ -62,6 +66,7 @@ public class DataManager : SingletonBase<DataManager>
             StageObject obj = objects[i].Serialize();
 
             if (objects[i].ID / 1000000 == 50) data.items.Add(obj);
+            else if (objects[i].ID / 1000000 == 20) data.enemies.Add(obj);
             else data.structures.Add(obj);
 
         }
@@ -89,6 +94,7 @@ public class DataManager : SingletonBase<DataManager>
             case DataType.ItemData: path = Paths.JsonPathItem; break;
             case DataType.StructureData: path = Paths.JsonPathStructure; break;
             case DataType.PlayerData: path = Paths.JsonPathPlayer; break;
+            case DataType.EnemyData: path = Paths.JsonPathEnemy; break;
 
             default: path = ""; break;
         }

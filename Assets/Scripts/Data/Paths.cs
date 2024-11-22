@@ -8,6 +8,7 @@ public class Paths
     public const string JsonPathStructure = "/Resources/JSON/StructureData.json";
     public const string JsonPathItem = "/Resources/JSON/ItemData.json";
     public const string JsonPathPlayer = "/Resources/JSON/PlayerData.json";
+    public const string JsonPathEnemy = "/Resources/JSON/EnemyData.json";
     public const string DataPathStructure = "/Resources/Structure/";
     public const string DataPathPlayer = "/Resources/PlayerData/";
 }
