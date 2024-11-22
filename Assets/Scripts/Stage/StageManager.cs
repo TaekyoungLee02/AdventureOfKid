@@ -22,6 +22,8 @@ public class StageManager : MonoBehaviour
         enemyLoader = new();
 
         SpawnFromData(1);
+
+        SoundManager.Instance.Play("bgm", Sound.Bgm, 0.5f);
     }
 
     public void SpawnFromData(int id)

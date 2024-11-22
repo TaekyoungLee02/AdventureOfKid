@@ -27,6 +27,7 @@ public class EnemyBaseState : IState
 
     public virtual void Enter()
     {
+        if (stateMachine.Enemy.Condition.isDie) return;
     }
 
     public virtual void Exit()
@@ -62,11 +63,13 @@ public class EnemyBaseState : IState
 
     protected void StartAnimation(int animatorHash)
     {
+        if (stateMachine.Enemy.Condition.isDie) return;
         stateMachine.Enemy.Animator.SetBool(animatorHash, true);
     }
 
     protected void StopAnimation(int animatorHash)
     {
+        if (stateMachine.Enemy.Condition.isDie) return;
         stateMachine.Enemy.Animator.SetBool(animatorHash, false);
     }
 
